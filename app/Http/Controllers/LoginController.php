@@ -15,17 +15,17 @@ class LoginController extends Controller
     public function login(Request $request): \Illuminate\Http\RedirectResponse
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+            'correo' => ['required', 'email'],
+            'contraseña' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt(['correo' => $request->correo, 'password' => $request->contraseña])) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            return redirect('/');
         }
 
         return back()->withErrors([
-            'email' => 'El email no coincide con nuestras credenciales',
+            'correo' => 'El correo no coincide con nuestras credenciales',
         ]);
     }
 

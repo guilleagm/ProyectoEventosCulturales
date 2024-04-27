@@ -32,4 +32,9 @@ class User extends Authenticatable
         'contraseña',
         'remember_token',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->contraseña;
+    }
 }

@@ -11,25 +11,25 @@ class RegisterController extends Controller
 {
     public function registerForm(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('auth.register');
+        return view('register');
     }
 
     public function register(Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', 'min:6'],
+            'nombre_usuario' => ['required', 'string', 'max:255'],
+            'correo' => ['required', 'string', 'email', 'max:255', 'unique:users,correo'],
+            'contraseña' => ['required','min:6'],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'nombre_usuario' => $request->nombre_usuario,
+            'correo' => $request->correo,
+            'contraseña' => Hash::make($request->contraseña),
         ]);
 
         Auth::login($user);
 
-        return redirect('/dashboard');
+        return redirect('/');
     }
 }
