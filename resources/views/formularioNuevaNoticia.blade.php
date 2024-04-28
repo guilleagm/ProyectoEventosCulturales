@@ -1,3 +1,5 @@
+@auth
+    @if (Auth::user()->esAdmin)
 <div class="container">
     <h2>Crear Noticia</h2>
     <form method="POST" action="{{ route('noticias.store') }}">
@@ -25,3 +27,5 @@
         <button type="submit" class="btn btn-primary">Publicar Noticia</button>
     </form>
 </div>
+    @endif
+@endauth

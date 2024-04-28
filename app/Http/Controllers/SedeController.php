@@ -24,4 +24,9 @@ class SedeController extends Controller
         Sede::create($validatedData);
         return redirect('/')->with('success', 'Sede creada con éxito');
     }
+
+    public function listarSedes(){
+        $sedes = Sede::all();
+        return view('listaSedes', compact('sedes'));
+    }
 }

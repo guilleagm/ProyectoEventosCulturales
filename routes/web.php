@@ -27,3 +27,6 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/', function () {
     return view('index');
 })->name('home');
+
+//Rutas sedes
+Route::get('/sedes', [SedeController::class, 'listarSedes'])->name('sedes.listaSedes');

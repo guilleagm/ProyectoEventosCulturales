@@ -17,6 +17,7 @@
             <a href="{{ route('formNuevaSede') }}">Crear Nueva Sede</a>
             <a href="{{ route('formNuevaNoticia') }}">Generar Noticia</a>
         @endif
+        <a href="{{ route('sedes.listaSedes') }}">Ver sedes</a>
         <a href="{{ route('logout') }}">Cerrar Sesión</a>
     @endauth
 

@@ -1,3 +1,5 @@
+@auth
+    @if (Auth::user()->esAdmin)
 <div class="container">
     <h1>Crear Nueva Sede</h1>
     <form method="POST" action="{{ route('sedes.store') }}">
@@ -20,3 +22,5 @@
         <button type="submit">Crear Sede</button>
     </form>
 </div>
+    @endif
+@endauth
