@@ -9,13 +9,13 @@
 <body>
 <div class="container">
     <h1>Bienvenido a Nuestro Sitio</h1>
+
     @auth
+        <p>Hola, {{ Auth::user()->nombre_usuario }}! Bienvenido de nuevo.</p>
         @if (Auth::user()->esAdmin)
-            <!-- Mensaje para administradores -->
-            <p>Hola, {{ Auth::user()->nombre_usuario }}! Eres un administrador.</p>
-        @else
-            <!-- Mensaje para usuarios no administradores -->
-            <p>Hola, {{ Auth::user()->nombre_usuario }}! Bienvenido de nuevo.</p>
+            <!-- Botones solo para administradores -->
+            <a href="{{ route('formNuevaSede') }}">Crear Nueva Sede</a>
+            <a href="{{ route('formNuevaNoticia') }}">Generar Noticia</a>
         @endif
         <a href="{{ route('logout') }}">Cerrar Sesión</a>
     @endauth

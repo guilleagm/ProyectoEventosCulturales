@@ -11,10 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        $tables = [
+            'artistas',
+            'asignacion_entradas',
+            'comentarios',
+            'eventos',
+            'favoritos',
+            'noticias',
+            'programacion',
+            'sedes',
+        ];
 
+        foreach ($tables as $tableName) {
+            Schema::table($tableName, function (Blueprint $table) use ($tableName) {
+                if (!Schema::hasColumn($tableName, 'created_at') && !Schema::hasColumn($tableName, 'updated_at')) {
+                    $table->timestamps();
+                }
+            });
+        }
     }
 
     /**
@@ -22,8 +36,21 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        $tables = [
+            'artistas',
+            'asignacion_entradas',
+            'comentarios',
+            'eventos',
+            'favoritos',
+            'noticias',
+            'programacion',
+            'sedes',
+        ];
+
+        foreach ($tables as $tableName) {
+            Schema::table($tableName, function (Blueprint $table) use ($tableName) {
+                $table->dropColumn(['created_at', 'updated_at']);
+            });
+        }
     }
 };
