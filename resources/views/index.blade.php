@@ -9,11 +9,15 @@
 <body>
 <div class="container">
     <h1>Bienvenido a Nuestro Sitio</h1>
-
     @auth
-        <p>Hola, {{ Auth::user()->nombre_usuario }}! Bienvenido de nuevo.</p>
+        @if (Auth::user()->esAdmin)
+            <!-- Mensaje para administradores -->
+            <p>Hola, {{ Auth::user()->nombre_usuario }}! Eres un administrador.</p>
+        @else
+            <!-- Mensaje para usuarios no administradores -->
+            <p>Hola, {{ Auth::user()->nombre_usuario }}! Bienvenido de nuevo.</p>
+        @endif
         <a href="{{ route('logout') }}">Cerrar Sesión</a>
-        <a href="/dashboard">Ir al Dashboard</a>
     @endauth
 
     @guest

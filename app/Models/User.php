@@ -31,6 +31,7 @@ class User extends Authenticatable
     protected $hidden = [
         'contraseña',
         'remember_token',
+        'esAdmin',
     ];
 
     public function getAuthPassword()
