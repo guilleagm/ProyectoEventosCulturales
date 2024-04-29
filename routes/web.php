@@ -1,9 +1,12 @@
 <?php
 // web.php
+use App\Http\Controllers\ArtistaController;
+use App\Http\Controllers\EventoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\SedeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Rutas para usuarios no autenticados
@@ -30,3 +33,22 @@ Route::get('/', function () {
 
 //Rutas sedes
 Route::get('/sedes', [SedeController::class, 'listarSedes'])->name('sedes.listaSedes');
+
+//Rutas usuarios
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/users', [UserController::class, 'listar'])->name('admin.users.index');
+    Route::get('/users/profile/{id}', [UserController::class, 'verPerfil'])->name('users.profile');
+    Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+});
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+Route::delete('/admin/users/{user}', [UserController::class, 'eliminarUsuario'])->name('users.eliminarUsuario');
+
+//Rutas artistas
+Route::get('/registro/artista', [ArtistaController::class, 'showRegistrationForm'])->name('registro.artista');
+Route::post('/registro/artista', [ArtistaController::class, 'register'])->name('registro.artista.submit');
+
+//Rutas eventos
+Route::get('/programar-evento', [EventoController::class, 'showEventForm'])->name('programarEvento');
+Route::post('/programar-evento', [EventoController::class, 'storeEvent'])->name('storeEvento');

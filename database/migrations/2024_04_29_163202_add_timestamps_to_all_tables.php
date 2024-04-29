@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,8 +23,11 @@ return new class extends Migration
 
         foreach ($tables as $tableName) {
             Schema::table($tableName, function (Blueprint $table) use ($tableName) {
-                if (!Schema::hasColumn($tableName, 'created_at') && !Schema::hasColumn($tableName, 'updated_at')) {
-                    $table->timestamps();
+                if (!Schema::hasColumn($tableName, 'created_at')) {
+                    $table->timestamp('created_at')->nullable();
+                }
+                if (!Schema::hasColumn($tableName, 'updated_at')) {
+                    $table->timestamp('updated_at')->nullable();
                 }
             });
         }
