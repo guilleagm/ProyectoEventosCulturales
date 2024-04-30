@@ -50,5 +50,6 @@ Route::get('/registro/artista', [ArtistaController::class, 'showRegistrationForm
 Route::post('/registro/artista', [ArtistaController::class, 'register'])->name('registro.artista.submit');
 
 //Rutas eventos
-Route::get('/programar-evento', [EventoController::class, 'showEventForm'])->name('programarEvento');
-Route::post('/programar-evento', [EventoController::class, 'storeEvent'])->name('storeEvento');
+Route::get('/programar-evento', [EventoController::class, 'mostrarFormularioEvento'])->name('programarEvento');
+Route::post('/programar-evento', [EventoController::class, 'nuevoEvento'])->name('storeEvento');
+Route::get('/eventos', [EventoController::class, 'listarEventos'])->name('eventos.listar');
