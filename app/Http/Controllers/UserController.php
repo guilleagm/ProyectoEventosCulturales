@@ -63,7 +63,6 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        // Verificar si el usuario autenticado es el mismo que se está intentando eliminar
         if (Auth::id() === $user->id) {
             // Eliminar al usuario
             $user->delete();
@@ -71,7 +70,6 @@ class UserController extends Controller
             // Cerrar la sesión
             Auth::logout();
 
-            // Redirigir a la página de inicio o a donde desees
             return redirect()->route('home')->with('success', 'Tu cuenta ha sido eliminada correctamente.');
         } else {
             // Si el usuario autenticado no es el mismo que se está intentando eliminar, mostrar un mensaje de error

@@ -53,3 +53,9 @@ Route::post('/registro/artista', [ArtistaController::class, 'register'])->name('
 Route::get('/programar-evento', [EventoController::class, 'mostrarFormularioEvento'])->name('programarEvento');
 Route::post('/programar-evento', [EventoController::class, 'nuevoEvento'])->name('storeEvento');
 Route::get('/eventos', [EventoController::class, 'listarEventos'])->name('eventos.listar');
+Route::get('/eventos/ver/{id}', [EventoController::class, 'verEvento'])->name('eventos.ver');
+Route::get('/eventos/editar/{id}', [EventoController::class, 'editar'])->name('eventos.editar');
+Route::put('/eventos/actualizar/{id}', [EventoController::class, 'actualizar'])->name('eventos.actualizar');
+
+//Rutas comentarios
+Route::post('/eventos/{eventoId}/comentarios', [EventoController::class, 'guardarComentario'])->name('eventos.guardar_comentario');
