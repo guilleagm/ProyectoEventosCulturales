@@ -17,7 +17,7 @@
             <p><strong>Comentado por:</strong> {{ $comentario->usuario->nombre_usuario}}</p>
             <p><strong>Contenido:</strong> {{ $comentario->contenido }}</p>
             <p><strong>Valoración:</strong> {{ $comentario->valoracion }} estrellas</p>
-            <p><strong>Fecha del comentario:</strong> {{ $comentario->created_at->format('d/m/Y H:i:s') }}</p>
+            <p><strong>Fecha del comentario:</strong> {{ $comentario->created_at}}</p>
         </div>
     @empty
         <p>No hay comentarios para este evento.</p>

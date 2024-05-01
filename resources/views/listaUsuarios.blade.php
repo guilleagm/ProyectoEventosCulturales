@@ -24,6 +24,25 @@
             @endforeach
             </tbody>
         </table>
+        <h1>Lista de Artistas</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nombre Artístico</th>
+                <th>Biografia</th>
+                <th>Género</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($artistas as $artista)
+                <tr>
+                    <td>{{ $artista->nombre }}</td>
+                    <td>{{ $artista->biografia }}</td>
+                    <td>{{ $artista->genero }}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
     @endif
 @endauth

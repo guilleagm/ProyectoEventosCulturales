@@ -5,6 +5,10 @@
     <form method="POST" action="{{ route('noticias.store') }}">
         @csrf
         <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" name="titulo" id="titulo" class="form-control" required>
+        </div>
+        <div class="form-group">
             <label for="texto">Texto de la Noticia:</label>
             <textarea name="texto" class="form-control" required></textarea>
         </div>

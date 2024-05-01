@@ -38,7 +38,7 @@ Route::get('/sedes', [SedeController::class, 'listarSedes'])->name('sedes.listaS
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/users', [UserController::class, 'listar'])->name('admin.users.index');
     Route::get('/users/profile/{id}', [UserController::class, 'verPerfil'])->name('users.profile');
-    Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 });
@@ -48,6 +48,7 @@ Route::delete('/admin/users/{user}', [UserController::class, 'eliminarUsuario'])
 //Rutas artistas
 Route::get('/registro/artista', [ArtistaController::class, 'showRegistrationForm'])->name('registro.artista');
 Route::post('/registro/artista', [ArtistaController::class, 'register'])->name('registro.artista.submit');
+Route::get('/', [ArtistaController::class, 'verificarArtista']);
 
 //Rutas eventos
 Route::get('/programar-evento', [EventoController::class, 'mostrarFormularioEvento'])->name('programarEvento');
@@ -59,3 +60,10 @@ Route::put('/eventos/actualizar/{id}', [EventoController::class, 'actualizar'])-
 
 //Rutas comentarios
 Route::post('/eventos/{eventoId}/comentarios', [EventoController::class, 'guardarComentario'])->name('eventos.guardar_comentario');
+
+//Rutas noticias
+Route::get('/noticias', [NoticiaController::class, 'listarNoticias'])->name('noticias.index');
+Route::get('/noticias/{id}', [NoticiaController::class, 'verNoticia'])->name('noticias.show');
+Route::get('/noticias/{noticia}/edit', [NoticiaController::class, 'edit'])->name('noticias.edit');
+Route::put('/noticias/{noticia}', [NoticiaController::class, 'update'])->name('noticias.update');
+Route::delete('/noticias/{noticia}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');

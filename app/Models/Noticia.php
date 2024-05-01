@@ -10,7 +10,7 @@ class Noticia extends Model
     use HasFactory;
 
     protected $table = 'noticias';
-    protected $fillable = ['texto', 'id_artista', 'id_usuario'];
+    protected $fillable = ['titulo','texto', 'id_artista', 'id_usuario'];
 
     public function artista()
     {

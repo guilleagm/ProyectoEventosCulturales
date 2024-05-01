@@ -11,6 +11,20 @@
             <label for="correo">Correo:</label>
             <input type="email" name="correo" class="form-control" value="{{ $user->correo }}" required>
         </div>
+        @if ($esArtista)
+            <div class="form-group">
+                <label for="nombre">Nombre Artístico:</label>
+                <input id="nombre" name="nombre" class="form-control" value="{{$artista->nombre }}">
+            </div>
+            <div class="form-group">
+                <label for="biografia">Biografía:</label>
+                <textarea id="biografia" name="biografia" class="form-control">{{$artista->biografia }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="genero">Género:</label>
+                <input id="genero" name="genero" class="form-control" value="{{$artista->genero }}">
+            </div>
+        @endif
         <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
     </form>
 </div>

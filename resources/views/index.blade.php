@@ -10,10 +10,13 @@
 <div class="container">
     <h1>Bienvenido a Nuestro Sitio</h1>
     <a href="{{ route('eventos.listar') }}">Lista Eventos</a>
+    <a href="{{ route('noticias.index') }}">Lista Noticias</a>
 @auth
         <p>Hola, {{ Auth::user()->nombre_usuario }}! Bienvenido de nuevo.</p>
         <a href="{{ route('users.profile', ['id' => Auth::id()]) }}">Ver perfil</a><br>
+        @if (!$esArtista)
         <a href="{{ route('registro.artista') }}">Registrarse como artista</a><br>
+        @endif
         @if (Auth::user()->id == Auth::id()) <!-- Verifica si el id de usuario coincide con el id de la sesión -->
         <!-- Botón solo para artistas -->
         <a href="{{ route('programarEvento') }}">Programar Evento</a><br>
