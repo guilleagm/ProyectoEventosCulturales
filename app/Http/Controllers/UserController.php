@@ -22,7 +22,8 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('perfilUsuario', compact('user'));
+        $artista = Artista::where('id_usuario', $user->id)->first();
+        return view('perfilUsuario', compact('user','artista'));
     }
 
     public function eliminarUsuario(User $user)

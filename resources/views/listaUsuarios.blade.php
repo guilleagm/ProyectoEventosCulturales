@@ -36,7 +36,7 @@
             <tbody>
             @foreach ($artistas as $artista)
                 <tr>
-                    <td>{{ $artista->nombre }}</td>
+                    <td><a href="{{ route('users.show', $artista->id_usuario) }}">{{ $artista->nombre }}</a></td>
                     <td>{{ $artista->biografia }}</td>
                     <td>{{ $artista->genero }}</td>
                 </tr>

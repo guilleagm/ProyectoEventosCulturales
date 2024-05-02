@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\SedeController;
+use App\Http\Controllers\UserArtistaFavController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,11 +45,14 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 Route::delete('/admin/users/{user}', [UserController::class, 'eliminarUsuario'])->name('users.eliminarUsuario');
+Route::delete('/usuarios/{usuario}/artistas/{artista}/eliminar_favorito', [App\Http\Controllers\UserArtistaFavController::class, 'eliminarFavorito'])->name('usuarios.artistas.eliminar_favorito');
+
 
 //Rutas artistas
 Route::get('/registro/artista', [ArtistaController::class, 'showRegistrationForm'])->name('registro.artista');
 Route::post('/registro/artista', [ArtistaController::class, 'register'])->name('registro.artista.submit');
 Route::get('/', [ArtistaController::class, 'verificarArtista']);
+Route::post('/usuarios/{usuario}/artistas/{artista}/favoritos', [UserArtistaFavController::class, 'agregarFavorito'])->name('usuarios.artistas.agregar_favorito');
 
 //Rutas eventos
 Route::get('/programar-evento', [EventoController::class, 'mostrarFormularioEvento'])->name('programarEvento');
