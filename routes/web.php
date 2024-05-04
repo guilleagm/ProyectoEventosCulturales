@@ -1,6 +1,7 @@
 <?php
 // web.php
 use App\Http\Controllers\ArtistaController;
+use App\Http\Controllers\AsignacionEntradasController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -71,3 +72,7 @@ Route::get('/noticias/{id}', [NoticiaController::class, 'verNoticia'])->name('no
 Route::get('/noticias/{noticia}/edit', [NoticiaController::class, 'edit'])->name('noticias.edit');
 Route::put('/noticias/{noticia}', [NoticiaController::class, 'update'])->name('noticias.update');
 Route::delete('/noticias/{noticia}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
+
+//Rutas compra entradas
+Route::get('/eventos/{evento}/comprar', [AsignacionEntradasController::class, 'mostrarCompraEntradas'])->name('entradas.mostrar_compra');
+Route::post('/eventos/{evento}/comprar', [AsignacionEntradasController::class, 'comprarEntradas'])->name('entradas.comprar');

@@ -8,6 +8,7 @@
     <p><strong>Número de Entradas Disponibles:</strong> {{ $evento->num_entradas_disponibles }}</p>
     <p><strong>Categoría:</strong> {{ $evento->categoria }}</p>
     <a href="{{ route('eventos.editar', $evento->id) }}" class="btn btn-primary">Editar Evento</a>
+    <a href="{{ route('entradas.mostrar_compra', $evento->id) }}" class="btn btn-primary">Comprar Entradas</a>
 </div>
 
 <div class="container">
