@@ -76,4 +76,5 @@ Route::delete('/noticias/{noticia}', [NoticiaController::class, 'destroy'])->nam
 //Rutas compra entradas
 Route::get('/eventos/{evento}/comprar', [AsignacionEntradasController::class, 'mostrarCompraEntradas'])->name('entradas.mostrar_compra');
 Route::post('/eventos/{evento}/comprar', [AsignacionEntradasController::class, 'comprarEntradas'])->name('entradas.comprar');
-Route::delete('/entradas/{id}/cancelar', [AsignacionEntradasController::class, 'cancelarCompra'])->name('entradas.cancelar');
+Route::get('/eventos/{idEvento}/confirmar-cancelacion', [AsignacionEntradasController::class, 'mostrarConfirmacionCancelacion'])->name('entradas.confirmar_cancelacion');
+Route::delete('/eventos/{idEvento}/cancelar', [AsignacionEntradasController::class, 'cancelarCompra'])->name('entradas.cancelar');

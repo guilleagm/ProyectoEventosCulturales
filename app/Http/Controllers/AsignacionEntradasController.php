@@ -36,19 +36,34 @@ class AsignacionEntradasController extends Controller
         return redirect()->route('eventos.ver', $evento->id)->with('success', 'Entradas compradas con éxito.');
     }
 
-    public function cancelarCompra($id)
+    public function mostrarConfirmacionCancelacion($idEvento)
     {
-        $asignacion = AsignacionEntrada::findOrFail($id);
+        $evento = Evento::findOrFail($idEvento);
 
-        // Verificar que el usuario autenticado es el mismo que compró la entrada o es un administrador
-        if (auth()->id() != $asignacion->id_usuario && !auth()->user()->esAdmin) {
+        return view('cancelarCompra', compact('evento'));
+    }
+    public function cancelarCompra($idEvento)
+    {
+        $evento = Evento::findOrFail($idEvento);
+        $idUsuario = auth()->id();  // ID del usuario autenticado
+
+        $asignacion = AsignacionEntrada::where('id_evento', $idEvento)
+            ->where('id_usuario', $idUsuario)
+            ->first();
+
+        if (!$asignacion && !auth()->user()->isAdmin) {
             return back()->with('error', 'No autorizado');
         }
 
-        $evento = Evento::findOrFail($asignacion->id_evento);
-        $evento->num_entradas_disponibles += $asignacion->num_entradas_asignadas;
-        $evento->save();
-        $asignacion->delete();
+        if ($asignacion) {
+            $evento->num_entradas_disponibles += $asignacion->num_entradas_asignadas;
+            $evento->save();
+
+            // Eliminar la asignación manualmente si no hay un 'id'
+            AsignacionEntrada::where('id_evento', $idEvento)
+                ->where('id_usuario', $idUsuario)
+                ->delete();  // Usar delete() directamente en la consulta
+        }
 
         return redirect()->route('eventos.ver', $evento->id)->with('success', 'Entrada cancelada con éxito.');
     }
