@@ -45,9 +45,8 @@ class EventoController extends Controller
         return view('listaEventos', ['eventos' => $eventos]);
     }
 
-    public function verEvento($id)
-    {
-        $evento = Evento::findOrFail($id);
+    public function verEvento($id) {
+        $evento = Evento::with('asignacionEntradas')->findOrFail($id);
         $comentarios = Comentario::where('id_evento', $id)->with('usuario')->get();
         return view('verEvento', compact('evento', 'comentarios'));
     }

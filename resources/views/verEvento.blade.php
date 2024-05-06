@@ -9,6 +9,16 @@
     <p><strong>Categoría:</strong> {{ $evento->categoria }}</p>
     <a href="{{ route('eventos.editar', $evento->id) }}" class="btn btn-primary">Editar Evento</a>
     <a href="{{ route('entradas.mostrar_compra', $evento->id) }}" class="btn btn-primary">Comprar Entradas</a>
+    @foreach ($evento->asignacionEntradas as $asignacion)
+        @if (auth()->id() == $asignacion->id_usuario || auth()->user()->esAdmin)
+            <form action="{{ route('entradas.cancelar', [$asignacion->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Cancelar Compra</button>
+            </form>
+        @endif
+    @endforeach
+
 </div>
 
 <div class="container">

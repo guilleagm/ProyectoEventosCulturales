@@ -22,4 +22,7 @@ class Evento extends Model
     {
         return $this->belongsTo(Sede::class, 'id_sede');
     }
+    public function asignacionEntradas() {
+        return $this->hasMany(AsignacionEntrada::class, 'id_evento');
+    }
 }
