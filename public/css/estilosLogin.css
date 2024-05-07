@@ -7,15 +7,23 @@ body {
     align-items: center;
     font-family: Arial, sans-serif;
     background-color: #f0f4f8;
+    transition: background-color 0.3s ease-in-out;
 }
 
-.register-wrapper {
+.login-wrapper {
     display: flex;
     width: 70%;
     height: 70%;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transform transition */
+}
+
+/* Enlarge the login box when hovered */
+.login-wrapper:hover {
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); /* Slightly increase size */
 }
 
 /* Branding section */
@@ -33,6 +41,7 @@ body {
 .brand-logo {
     font-size: 2.5em;
     margin-bottom: 20px;
+    transition: transform 0.2s;
 }
 
 .about-links {
@@ -48,6 +57,7 @@ body {
 }
 
 .about-links a:hover {
+    color: #e0e0e0;
     text-decoration: underline;
 }
 
@@ -78,16 +88,32 @@ body {
     display: block;
 }
 
-.input-field, .input-file {
+.input-field {
     width: 100%;
     padding: 10px;
     border: 1px solid #cccccc;
     border-radius: 5px;
     margin-top: 5px;
     font-size: 0.9em;
+    transition: background-color 0.2s ease-in-out; /* Smooth color transition */
 }
 
-.register-button {
+/* Highlight the input fields on hover */
+.input-field:hover {
+    background-color: #f0f0f0; /* Light gray */
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+}
+
+.login-button {
     width: 100%;
     padding: 12px;
     background-color: #6dc0b4;
@@ -96,9 +122,25 @@ body {
     cursor: pointer;
     font-size: 1em;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.2s;
 }
 
-.register-button:hover {
+.login-button:hover {
     background-color: #5db09e;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 15px;
+    color: #6dc0b4;
+    text-decoration: none;
+    font-size: 0.9em;
+    text-align: right;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+    color: #4b9b9f;
 }
