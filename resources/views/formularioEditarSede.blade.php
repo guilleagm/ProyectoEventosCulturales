@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/estilos1.css">
 <div class="container">
     <h2>Editar Sede</h2>
     <form method="POST" action="{{ route('sedes.actualizar', $sede->id) }}">

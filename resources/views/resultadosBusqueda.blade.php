@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/estilos1.css">
 <div class="container">
     <h1>Resultados de la Búsqueda para "{{ $busqueda }}"</h1>
     @if ($eventos->isEmpty())

@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/estilos1.css">
 <div class="container">
     <h1>{{ $noticia->titulo }}</h1>
     <p><strong>Texto de la Noticia:</strong> {{ $noticia->texto }}</p>

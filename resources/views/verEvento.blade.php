@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/estilos1.css">
 <body>
 <div class="container">
     <h1>{{ $evento->titulo }}</h1>
@@ -9,7 +10,6 @@
         <p>No hay imagen disponible para este evento.</p>
     @endif
 
-    <!-- Remaining event details -->
     <p><strong>Descripción:</strong> {{ $evento->descripcion }}</p>
     <p><strong>Fecha:</strong> {{ $evento->fecha }}</p>
     <p><strong>ID Sede:</strong> {{ $evento->id_sede }}</p>

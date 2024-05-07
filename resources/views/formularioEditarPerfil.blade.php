@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/estilos1.css">
 <div class="container">
     <h2>Editar Perfil</h2>
     <form method="POST" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">

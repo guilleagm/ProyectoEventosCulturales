@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/estilos1.css">
 @auth
     @if (Auth::user()->esAdmin)
 <div class="container">

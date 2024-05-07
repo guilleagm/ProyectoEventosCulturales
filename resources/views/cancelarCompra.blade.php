@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/estilos1.css">
 <div class="container">
     <h1>Confirmar Cancelación</h1>
     <p>Estás a punto de cancelar la compra de las entradas para el evento: {{ $evento->titulo }}</p>

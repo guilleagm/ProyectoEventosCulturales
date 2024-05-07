@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/estilos1.css">
 <div class="container">
     <h1>Perfil de Usuario</h1>
     <div class="profile">

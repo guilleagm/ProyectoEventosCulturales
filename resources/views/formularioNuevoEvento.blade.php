@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/estilos1.css">
 <div class="container">
     <h1>Programar Nuevo Evento</h1>
     <form method="POST" action="{{ route('storeEvento') }}" enctype="multipart/form-data">

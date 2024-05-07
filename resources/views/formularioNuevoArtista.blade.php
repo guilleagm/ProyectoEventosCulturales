@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/estilos1.css">
 @auth
     <div class="container">
         <h2>Registro de Artista</h2>

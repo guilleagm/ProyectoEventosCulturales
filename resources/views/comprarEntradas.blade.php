@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/estilos1.css">
 <div class="container">
     <h1>Compra de Entradas para: {{ $evento->titulo }}</h1>
     <form method="POST" action="{{ route('entradas.comprar', ['evento' => $evento->id]) }}">

@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/estilos1.css">
 <div class="container">
     <h1>Editar Evento</h1>
     <form action="{{ route('eventos.actualizar', $evento->id) }}" method="POST" enctype="multipart/form-data">
