@@ -16,6 +16,8 @@ class Evento extends Model
         'num_entradas_disponibles',
         'estado',
         'id_sede',
+        'imagen',
+        'id_usuario',
     ];
 
     public function sede()
@@ -24,5 +26,9 @@ class Evento extends Model
     }
     public function asignacionEntradas() {
         return $this->hasMany(AsignacionEntrada::class, 'id_evento');
+    }
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'id_usuario');
     }
 }

@@ -35,6 +35,9 @@ Route::get('/', function () {
 
 //Rutas sedes
 Route::get('/sedes', [SedeController::class, 'listarSedes'])->name('sedes.listaSedes');
+Route::get('/sedes/{id}', [SedeController::class, 'verSede'])->name('sedes.ver');
+Route::get('/sedes/{id}/editar', [SedeController::class, 'editar'])->name('sedes.editar');
+Route::put('/sedes/{id}', [SedeController::class, 'actualizar'])->name('sedes.actualizar');
 
 //Rutas usuarios
 Route::middleware(['auth'])->group(function () {
@@ -62,6 +65,8 @@ Route::get('/eventos', [EventoController::class, 'listarEventos'])->name('evento
 Route::get('/eventos/ver/{id}', [EventoController::class, 'verEvento'])->name('eventos.ver');
 Route::get('/eventos/editar/{id}', [EventoController::class, 'editar'])->name('eventos.editar');
 Route::put('/eventos/actualizar/{id}', [EventoController::class, 'actualizar'])->name('eventos.actualizar');
+Route::get('/eventos/buscar', [EventoController::class, 'buscar'])->name('eventos.buscar');
+Route::get('/eventos/filtrar', [EventoController::class, 'filtrar'])->name('eventos.filtrar');
 
 //Rutas comentarios
 Route::post('/eventos/{eventoId}/comentarios', [EventoController::class, 'guardarComentario'])->name('eventos.guardar_comentario');

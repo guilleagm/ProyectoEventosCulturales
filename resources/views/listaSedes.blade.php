@@ -12,7 +12,7 @@
         <tbody>
         @foreach($sedes as $sede)
             <tr>
-                <td>{{ $sede->nombre }}</td>
+                <td><a href="{{ route('sedes.ver', $sede->id) }}">{{ $sede->nombre }}</a></td>
                 <td>{{ $sede->dirección }}</td>
                 <td>{{ $sede->capacidad }}</td>
                 <td>{{ $sede->accesibilidad ? 'Sí' : 'No' }}</td>

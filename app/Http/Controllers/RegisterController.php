@@ -14,22 +14,36 @@ class RegisterController extends Controller
         return view('register');
     }
 
-    public function register(Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function register(Request $request)
     {
+        // Validate inputs including image
         $request->validate([
             'nombre_usuario' => ['required', 'string', 'max:255'],
             'correo' => ['required', 'string', 'email', 'max:255', 'unique:users,correo'],
-            'contraseña' => ['required','min:6'],
+            'contraseña' => ['required', 'min:6'],
+            'imagen' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'] // Add image validation
         ]);
 
+        // Check if an image file is present
+        $imageName = null;
+        if ($request->hasFile('imagen')) {
+            $imageFile = $request->file('imagen');
+            $imageName = time() . '.' . $imageFile->getClientOriginalExtension();
+            $imageFile->move(public_path('images/users'), $imageName);
+        }
+
+        // Create a new user including the image name
         $user = User::create([
             'nombre_usuario' => $request->nombre_usuario,
             'correo' => $request->correo,
             'contraseña' => Hash::make($request->contraseña),
+            'imagen' => $imageName // Store the image filename or null
         ]);
 
+        // Log in the user
         Auth::login($user);
 
         return redirect('/');
     }
+
 }

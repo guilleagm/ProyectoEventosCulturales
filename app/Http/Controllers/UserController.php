@@ -56,27 +56,49 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        // Validate the basic user attributes and image
         $request->validate([
             'nombre_usuario' => 'required|string|max:255',
             'correo' => 'required|string|email|max:255|unique:users,correo,' . $id,
             'nombre' => 'sometimes|required|string|max:255',
             'biografia' => 'nullable|string',
             'genero' => 'nullable|string|max:255',
+            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048' // Validate the image
         ]);
 
+        // Retrieve the user instance
         $user = User::findOrFail($id);
+
+        // Check if there's a new image to be uploaded
+        if ($request->hasFile('imagen')) {
+            // Delete the existing image if available
+            if ($user->imagen && file_exists(public_path('images/users/' . $user->imagen))) {
+                unlink(public_path('images/users/' . $user->imagen));
+            }
+
+            // Save the new image file
+            $imageFile = $request->file('imagen');
+            $imageName = time() . '.' . $imageFile->getClientOriginalExtension();
+            $imageFile->move(public_path('images/users'), $imageName);
+
+            // Update the user's image field
+            $user->imagen = $imageName;
+        }
+
+        // Update the user information
         $user->update([
             'nombre_usuario' => $request->nombre_usuario,
             'correo' => $request->correo,
         ]);
 
-        if ($request->has('nombre_artista')) {
+        // Check if the user is also an artist
+        if ($request->has('nombre')) {
             $artista = Artista::updateOrCreate(
                 ['id_usuario' => $id],
                 [
                     'nombre' => $request->nombre,
                     'biografia' => $request->biografia,
-                    'genero' => $request->genero,
+                    'genero' => $request->genero
                 ]
             );
         }

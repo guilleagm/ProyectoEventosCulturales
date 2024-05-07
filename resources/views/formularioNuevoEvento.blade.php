@@ -1,7 +1,8 @@
 <div class="container">
     <h1>Programar Nuevo Evento</h1>
-    <form method="POST" action="{{ route('storeEvento') }}">
+    <form method="POST" action="{{ route('storeEvento') }}" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="id_usuario" value="{{ Auth::id() }}">
         <div class="form-group">
             <label for="titulo">Título del Evento:</label>
             <input type="text" name="titulo" class="form-control" required>
@@ -30,7 +31,10 @@
             <label for="id_sede">ID de la Sede:</label>
             <input type="number" name="id_sede" class="form-control" required>
         </div>
-        <!-- Agrega aquí más campos del formulario según tus necesidades -->
+        <div class="form-group">
+            <label for="imagen">Imagen del Evento:</label>
+            <input type="file" name="imagen" class="form-control" required>
+        </div>
         <button type="submit" class="btn btn-primary">Programar Evento</button>
     </form>
 </div>
