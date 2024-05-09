@@ -117,7 +117,7 @@ class UserController extends Controller
             // Cerrar la sesión
             Auth::logout();
 
-            return redirect()->route('home')->with('success', 'Tu cuenta ha sido eliminada correctamente.');
+            return redirect()->route('/')->with('success', 'Tu cuenta ha sido eliminada correctamente.');
         } else {
             // Si el usuario autenticado no es el mismo que se está intentando eliminar, mostrar un mensaje de error
             abort(403, 'No tienes permiso para eliminar este usuario.');

@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Artista;
 use App\Models\Comentario;
 use App\Models\Evento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 
 class EventoController extends Controller
@@ -159,5 +161,18 @@ class EventoController extends Controller
 
         return view('listaEventos', ['eventos' => $eventos]);
     }
+    public function showIndex()
+    {
+        // Recupera todos los eventos
+        $eventos = Evento::all();
 
+        // Verifica si el usuario autenticado es artista
+        $esArtista = false;
+        if (Auth::check()) {
+            $esArtista = Artista::where('id_usuario', Auth::id())->exists();
+        }
+
+        // Pasa los eventos y el estado de artista a la vista
+        return view('index', ['eventos' => $eventos, 'esArtista' => $esArtista]);
+    }
 }

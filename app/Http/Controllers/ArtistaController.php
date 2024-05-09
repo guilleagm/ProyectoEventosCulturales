@@ -33,13 +33,4 @@ class ArtistaController extends Controller
         // Redirigir a alguna página de confirmación o a donde desees
         return redirect()->route('home');
     }
-
-    public function verificarArtista()
-    {
-        $esArtista = false;
-        if (Auth::check()) {
-            $esArtista = Artista::where('id_usuario', Auth::id())->exists();
-        }
-        return view('index', ['esArtista' => $esArtista]);
-    }
 }

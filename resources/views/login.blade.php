@@ -25,10 +25,12 @@
             </div>
             <button type="submit" class="login-button">Iniciar sesión</button>
             <div>
-                ¿No tienes cuenta aún?<a href="#">Regístrate</a>
+                <br>
+                ¿No tienes cuenta aún?
+                <a href="{{ route('register') }}">Regístrate</a>
             </div>
             <div>
-                Iniciar sesión con google
+                Iniciar sesión con Google
             </div>
         </form>
     </div>

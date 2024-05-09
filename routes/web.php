@@ -29,9 +29,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Ruta principal
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('index');
-})->name('home');
+})->name('home');*/
+Route::get('/', [EventoController::class, 'showIndex']);
 
 //Rutas sedes
 Route::get('/sedes', [SedeController::class, 'listarSedes'])->name('sedes.listaSedes');
@@ -55,7 +56,6 @@ Route::delete('/usuarios/{usuario}/artistas/{artista}/eliminar_favorito', [App\H
 //Rutas artistas
 Route::get('/registro/artista', [ArtistaController::class, 'showRegistrationForm'])->name('registro.artista');
 Route::post('/registro/artista', [ArtistaController::class, 'register'])->name('registro.artista.submit');
-Route::get('/', [ArtistaController::class, 'verificarArtista']);
 Route::post('/usuarios/{usuario}/artistas/{artista}/favoritos', [UserArtistaFavController::class, 'agregarFavorito'])->name('usuarios.artistas.agregar_favorito');
 
 //Rutas eventos

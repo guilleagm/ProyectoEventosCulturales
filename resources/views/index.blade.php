@@ -5,19 +5,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    <link rel="stylesheet" href="/css/estilos1.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
+    <script>
+        $(document).ready(function() {
+            $('.event-carousel').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                dots: true,
+                pauseOnHover: true,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="container">
     <header>
         <h1>Bienvenido a Nuestro Sitio</h1>
+    </header>
+
+    <main>
+        <section class="carousel-section">
+            <h2>Próximos Eventos</h2>
+            <div class="event-carousel">
+                @if (isset($eventos))
+                    @foreach ($eventos as $evento)
+                        <div class="carousel-item">
+                            <img src="{{ asset('images/' . $evento->imagen) }}" alt="{{ $evento->titulo }}">
+                            <h3>{{ $evento->titulo }}</h3>
+                            <p>{{ $evento->categoria }} - {{ \Carbon\Carbon::parse($evento->fecha)->format('d/m/Y') }}</p>
+                            <a href="{{ route('eventos.ver', ['id' => $evento->id]) }}">Más información</a>
+                        </div>
+                    @endforeach
+                @else
+                    <p>No hay eventos disponibles.</p>
+                @endif
+            </div>
+        </section>
         <nav>
             <a href="{{ route('eventos.listar') }}">Lista Eventos</a>
             <a href="{{ route('noticias.index') }}">Lista Noticias</a>
         </nav>
-    </header>
-
-    <main>
         <section>
             <form action="{{ route('eventos.buscar') }}" method="GET">
                 <label for="artist-name">Buscar Eventos por Usuario:</label>
@@ -25,8 +66,7 @@
                 <button type="submit">Buscar</button>
             </form>
         </section>
-
-        @auth
+    @auth
             <section>
                 <p>Hola, {{ Auth::user()->nombre_usuario }}! Bienvenido de nuevo.</p>
                 <nav>
