@@ -35,10 +35,24 @@ class UserController extends Controller
         abort(403, 'No autorizado.');
     }
 
-    public function verPerfil($id){
+    public function verPerfil($id)
+    {
         $user = User::findOrFail($id);
         $artista = Artista::where('id_usuario', $id)->first();
-        return view('perfilUsuario', compact('user', 'artista'));
+
+        // Comprueba si el usuario consultado es un artista
+        $esArtistaPerfil = !is_null($artista);
+
+        // Comprueba si el usuario logueado es un artista, mantiene el nombre de la variable como $esArtista
+        $esArtista = Auth::check() && Artista::where('id_usuario', Auth::id())->exists();
+
+        // Retorna la vista con todas las variables necesarias
+        return view('perfilUsuario', [
+            'user' => $user,
+            'artista' => $artista,
+            'esArtistaPerfil' => $esArtistaPerfil,
+            'esArtista' => $esArtista
+        ]);
     }
 
     public function edit($id)
@@ -123,4 +137,13 @@ class UserController extends Controller
             abort(403, 'No tienes permiso para eliminar este usuario.');
         }
     }
+
+    /*public function comprobarArtista($id){
+        // Verifica si el usuario autenticado es artista
+        $esArtista = false;
+        if (Auth::check()) {
+            $esArtista = Artista::where('id_usuario', Auth::id())->exists();
+        }
+        return view('perfilUsuario',['esArtista' => $esArtista]);
+    }*/
 }

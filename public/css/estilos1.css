@@ -261,6 +261,10 @@ main section button[type="submit"]:hover {
     margin: 0;
 }
 
+.nav-logo h1 a{
+    color: #1a202c;
+}
+
 .nav-items {
     list-style: none;
     display: flex;

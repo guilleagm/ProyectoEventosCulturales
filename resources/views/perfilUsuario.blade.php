@@ -9,11 +9,9 @@
             <p><strong>Imagen:</strong> No hay imagen de perfil disponible</p>
         @endif
 
-        <!-- Display user details -->
         <p><strong>Nombre de Usuario:</strong> {{ $user->nombre_usuario }}</p>
         <p><strong>Correo:</strong> {{ $user->correo }}</p>
 
-        <!-- Artist information -->
         @if ($artista)
             <h2>Datos del Artista</h2>
             <p><strong>Nombre Artístico:</strong> <a href="{{ route('users.show', $artista->id) }}">{{ $artista->nombre }}</a></p>
@@ -36,11 +34,11 @@
                 @endif
             @endif
         @endif
-
-        <!-- Edit user profile -->
+        @if (!$esArtista)
+            <a href="{{ route('registro.artista') }}">Registrarse como artista</a><br>
+        @endif
         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Editar Perfil</a>
 
-        <!-- Admin and user-specific options -->
         @if (auth()->check() && auth()->user()->esAdmin && auth()->user()->id != $user->id)
             <form action="{{ route('users.eliminarUsuario', $user->id) }}" method="POST">
                 @csrf

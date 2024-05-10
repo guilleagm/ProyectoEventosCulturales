@@ -54,16 +54,10 @@
     @auth
             <section>
                 <nav>
-                    @if (!$esArtista)
-                        <a href="{{ route('registro.artista') }}">Registrarse como artista</a><br>
-                    @endif
                     @if (Auth::user()->id == Auth::id())
                         <a href="{{ route('programarEvento') }}">Programar Evento</a><br>
                     @endif
                 </nav>
-            </section>
-            <section>
-                <a href="{{ route('logout') }}">Cerrar Sesión</a><br>
             </section>
         @endauth
 

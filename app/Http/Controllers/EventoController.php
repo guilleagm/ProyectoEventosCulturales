@@ -165,14 +165,6 @@ class EventoController extends Controller
     {
         // Recupera todos los eventos
         $eventos = Evento::all();
-
-        // Verifica si el usuario autenticado es artista
-        $esArtista = false;
-        if (Auth::check()) {
-            $esArtista = Artista::where('id_usuario', Auth::id())->exists();
-        }
-
-        // Pasa los eventos y el estado de artista a la vista
-        return view('index', ['eventos' => $eventos, 'esArtista' => $esArtista]);
+        return view('index', ['eventos' => $eventos]);
     }
 }
