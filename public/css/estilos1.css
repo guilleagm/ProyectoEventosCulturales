@@ -1,7 +1,7 @@
 /* General body styles */
 body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-    width: 70%;
+    width: 80%;
     max-width: 1200px;
     background: #ffffff;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -25,12 +25,7 @@ header {
     text-align: center;
     padding-bottom: 20px;
     border-bottom: 2px solid #e0e0e0;
-}
-
-header h1 {
-    color: #333333;
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 header nav a {
@@ -41,8 +36,15 @@ header nav a {
     transition: color 0.3s;
 }
 
+/* Main sections */
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 main section {
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 20px;
     background-color: #f0f8ff;
     border-radius: 6px;
@@ -66,6 +68,7 @@ main section a {
 main section form {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 main section input[type="text"] {
@@ -73,7 +76,6 @@ main section input[type="text"] {
     padding: 10px;
     border: 1px solid #cccccc;
     border-radius: 5px;
-    margin-top: 10px;
     font-size: 1em;
     transition: background-color 0.2s ease-in-out;
 }
@@ -86,21 +88,25 @@ main section button[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
-    margin-top: 10px;
     transition: background-color 0.3s;
 }
 
 main section button[type="submit"]:hover {
     background-color: #5db09e;
 }
+
 .carousel-section {
-    margin-top: 300px;
+    margin-top: 30px;
     text-align: center;
+    background-color: #f0f8ff;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
 .event-carousel {
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
     padding: 20px 0;
 }
 
@@ -128,6 +134,221 @@ main section button[type="submit"]:hover {
     color: #666;
 }
 
+.carousel-item a {
+    color: #6dc0b4;
+    text-decoration: none;
+}
+
 .carousel-item:hover {
     transform: scale(1.05);
+}
+/* Estilos del menú */
+/* Estilos del encabezado */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.nav-items {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-items li {
+    display: flex;
+    align-items: center;
+    margin-right: -20px;
+    font-size: 1em;
+}
+
+.nav-items a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
+    padding: 5px 10px;
+}
+
+.nav-items a:hover {
+    color: #6dc0b4;
+}
+
+.search-form-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-form input[type="text"] {
+    padding: 5px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.search-form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #333;
+    transition: color 0.2s;
+}
+
+.search-form button:hover {
+    color: #6dc0b4;
+}
+/* Fondo y logo */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #f5f5fc; /* Lavanda Claro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.nav-items a {
+    text-decoration: none;
+    color: #333; /* Negro Suave */
+    font-weight: bold;
+    transition: color 0.3s;
+    padding: 5px 10px;
+}
+
+.nav-items a.active {
+    color: #6c63ff; /* Lavanda Oscuro */
+}
+
+.nav-items a:hover {
+    color: #6dc0b4;
+}
+/* Estilos del encabezado */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 2%;
+    background-color: #f5f5fc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 2%;
+    width: 96%; /* Ajusta el ancho del contenedor */
+}
+
+
+.nav-logo h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.nav-items {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2%; /* Usa un espacio entre enlaces en porcentaje */
+    padding: 0;
+    flex: 3; /* Asigna más espacio al conjunto de enlaces */
+}
+
+.nav-items a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
+    padding: 0.5em 1em;
+    white-space: nowrap; /* Evita el salto de línea en el enlace */
+}
+
+.nav-items a.active {
+    color: #6c63ff;
+}
+
+.nav-items a:hover {
+    color: #6dc0b4;
+}
+
+.search-form-container {
+    display: flex;
+    align-items: center;
+    flex: 2; /* Asigna menos espacio al formulario */
+    justify-content: flex-end; /* Mueve el buscador hacia la derecha */
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.search-form input[type="text"] {
+    padding: 0.5em;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    outline: none;
+    width: 100%; /* Haz que el ancho se ajuste automáticamente */
+    max-width: 180px; /* Limita el ancho máximo del campo de búsqueda */
+}
+
+.search-form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #333;
+    transition: color 0.2s;
+}
+
+.search-form button:hover {
+    color: #6dc0b4;
+}
+.event-carousel {
+    display: flex;
+    flex-wrap: nowrap; /* Evita que las imágenes se ajusten automáticamente */
+    overflow-x: hidden; /* Agrega desplazamiento horizontal */
+    scroll-snap-type: x mandatory; /* Hace que el desplazamiento se ajuste a las imágenes */
+}
+
+.carousel-item {
+    flex: 0 0 auto; /* Evita que las imágenes se estiren */
+    scroll-snap-align: start; /* Alinea cada imagen con el inicio del contenedor */
+    margin-right: 20px; /* Ajusta el espacio entre las imágenes */
+    margin-bottom: 20px;
+    width: 350px; /* Ancho fijo para cada elemento del carrusel */
+    height: 300px; /* Alto fijo para cada elemento del carrusel */
+}
+
+.carousel-item img {
+    width: 100%; /* Ajusta el ancho de la imagen al 100% del contenedor */
+    height: 50%; /* Ajusta la altura al 100% del contenedor */
+    object-fit: cover; /* Escala la imagen para cubrir todo el contenedor */
+}
+
+.logout-container {
+    display: flex;
+    justify-content: flex-end;
+}
+.logout-btn{
+    font-size: 1em;
+    margin-top: -1%;
+    color: #1a202c;
 }

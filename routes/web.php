@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
 /*Route::get('/', function () {
     return view('index');
 })->name('home');*/
-Route::get('/', [EventoController::class, 'showIndex']);
+Route::get('/', [EventoController::class, 'showIndex'])->name('home');
 
 //Rutas sedes
 Route::get('/sedes', [SedeController::class, 'listarSedes'])->name('sedes.listaSedes');
@@ -51,7 +51,9 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 Route::delete('/admin/users/{user}', [UserController::class, 'eliminarUsuario'])->name('users.eliminarUsuario');
 Route::delete('/usuarios/{usuario}/artistas/{artista}/eliminar_favorito', [App\Http\Controllers\UserArtistaFavController::class, 'eliminarFavorito'])->name('usuarios.artistas.eliminar_favorito');
-
+Route::get('panelAdmin', function (){
+    return view('panelAdmin');
+})->name('panelAdmin');
 
 //Rutas artistas
 Route::get('/registro/artista', [ArtistaController::class, 'showRegistrationForm'])->name('registro.artista');
