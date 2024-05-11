@@ -10,7 +10,9 @@
             <li><a href="{{ route('noticias.index') }}">Noticias</a></li>
             @auth
             <li><a href="{{ route('users.profile', ['id' => Auth::id()]) }}">Perfil</a></li>
+            @if(Auth::user()->esAdmin)
             <li><a href="{{ route('panelAdmin') }}">Panel Admin</a></li>
+                @endif
             @endauth
             <li class="search-form-container">
                 <form action="{{ route('eventos.buscar') }}" method="GET" class="search-form">

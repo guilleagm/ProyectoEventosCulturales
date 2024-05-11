@@ -30,4 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // Llamada inicial a setView con '2' para establecer dos columnas al cargar la página
+    setView('2');
 });

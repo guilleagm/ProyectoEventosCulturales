@@ -1,10 +1,11 @@
 <link rel="stylesheet" href="/css/estilos1.css">
 <div class="container">
+    @include('menu')
     <h1>Perfil de Usuario</h1>
     <div class="profile">
         <!-- Display the profile image -->
         @if ($user->imagen)
-            <img src="{{ asset('images/users/' . $user->imagen) }}" alt="Imagen de {{ $user->nombre_usuario }}" class="img-fluid" style="max-width: 150px;">
+            <img src="{{ asset('images/users/' . $user->imagen) }}" alt="Imagen de {{ $user->nombre_usuario }}" class="profile-image">
         @else
             <p><strong>Imagen:</strong> No hay imagen de perfil disponible</p>
         @endif
@@ -14,11 +15,12 @@
 
         <!-- Artist details, only shown if the profile belongs to an artist -->
         @if ($artista)
-            <h2>Datos del Artista</h2>
-            <p><strong>Nombre Artístico:</strong> <a href="{{ route('users.profile', $artista->id) }}">{{ $artista->nombre }}</a></p>
-            <p><strong>Biografía:</strong> {{ $artista->biografia }}</p>
-            <p><strong>Género:</strong> {{ $artista->genero }}</p>
-
+            <div class="artist-details">
+                <h2>Datos del Artista</h2>
+                <p><strong>Nombre Artístico:</strong> <a href="{{ route('users.profile', $artista->id) }}">{{ $artista->nombre }}</a></p>
+                <p><strong>Biografía:</strong> {{ $artista->biografia }}</p>
+                <p><strong>Género:</strong> {{ $artista->genero }}</p>
+            </div>
             <!-- Add/remove favorite artist -->
             @if (auth()->check() && auth()->user()->id != $user->id)
                 @if (auth()->user()->artistasFavoritos()->where('id_artista', $artista->id)->exists())
@@ -39,6 +41,9 @@
         <!-- Button to register as artist, shown only if the logged-in user is viewing their own profile and they are not an artist -->
         @if ($puedeRegistrarArtista)
             <a href="{{ route('registro.artista') }}" class="btn btn-primary">Registrarse como artista</a><br>
+        @endif
+        @if($esArtistaLogueado)
+            <a href="{{ route('programarEvento') }}">Programar Evento</a><br>
         @endif
 
         <!-- Edit profile link -->
@@ -63,3 +68,4 @@
         @endif
     </div>
 </div>
+@include('pie')

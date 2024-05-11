@@ -37,3 +37,4 @@
         @endforeach
     </div>
 </div>
+@include('pie')

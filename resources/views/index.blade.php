@@ -16,6 +16,11 @@
 <div class="container">
     @include('menu')
     <main>
+        @guest
+            <section>
+                <p>Bienvenido, visitante! Considera <a href="{{ route('login') }}">iniciar sesión</a> o <a href="{{ route('register') }}">registrarte</a> para una mejor experiencia.</p>
+            </section>
+        @endguest
         <section class="carousel-section">
             <h2>Próximos Eventos</h2>
             <div class="event-carousel">
@@ -33,22 +38,23 @@
                 @endif
             </div>
         </section>
-    @auth
-            <section>
-                <nav>
-                    @if (Auth::user()->id == Auth::id())
-                        <a href="{{ route('programarEvento') }}">Programar Evento</a><br>
-                    @endif
-                </nav>
+            <section class="news-section">
+                <h2>Últimas Noticias</h2>
+                <div class="news-container">
+                    @foreach ($noticias as $noticia)
+                        <div class="news-item">
+                            <img src="{{ asset('images/news/' . $noticia->imagen) }}" alt="{{ $noticia->titulo }}" class="news-image">
+                            <div class="news-content">
+                                <h3>{{ $noticia->titulo }}</h3>
+                                <p>{{ $noticia->texto }}</p>
+                                <a href="{{ route('noticias.show', ['id' => $noticia->id]) }}">Leer más</a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </section>
-        @endauth
-
-        @guest
-            <section>
-                <p>Bienvenido, visitante! Considera <a href="{{ route('login') }}">iniciar sesión</a> o <a href="{{ route('register') }}">registrarte</a> para una mejor experiencia.</p>
-            </section>
-        @endguest
     </main>
 </div>
+@include('pie')
 </body>
 </html>

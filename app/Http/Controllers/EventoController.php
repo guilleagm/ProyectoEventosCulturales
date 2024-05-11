@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Artista;
 use App\Models\Comentario;
 use App\Models\Evento;
+use App\Models\Noticia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
@@ -163,8 +164,8 @@ class EventoController extends Controller
     }
     public function showIndex()
     {
-        // Recupera todos los eventos
         $eventos = Evento::all();
-        return view('index', ['eventos' => $eventos]);
+        $noticias = Noticia::all();
+        return view('index', ['eventos' => $eventos, 'noticias' => $noticias]);
     }
 }

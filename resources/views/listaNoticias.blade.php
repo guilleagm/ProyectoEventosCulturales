@@ -1,30 +1,30 @@
-<link rel="stylesheet" href="/css/estilos1.css">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias - CulturaVibe</title>
+    <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
+    <script src="/js/filtradoEventos.js"></script>
+</head>
+<body>
 <div class="container">
-    <h1>Lista de Noticias</h1>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Texto</th>
-            <th>Artista ID</th>
-            <th>Usuario ID</th>
-        </tr>
-        </thead>
-        <tbody>
+    @include('menu')
+    <h1>Noticias</h1>
+    <div class="news-container">
         @foreach ($noticias as $noticia)
-            <tr>
-                <td>{{ $noticia->id }}</td>
-                <td>
-                    <a href="{{ route('noticias.show', $noticia->id) }}">
-                        {{ $noticia->titulo }}
-                    </a>
-                </td>
-                <td>{{ $noticia->texto }}</td>
-                <td>{{ $noticia->id_artista }}</td>
-                <td>{{ $noticia->id_usuario }}</td>
-            </tr>
+            <div class="news-card">
+                <img src="{{ asset('images/news/' . $noticia->imagen) }}" alt="Imagen Noticia">
+                <div class="news-info">
+                    <h2><a href="{{ route('noticias.show', $noticia->id) }}">{{ $noticia->titulo }}</a></h2>
+                    <p>{{ $noticia->texto }}</p>
+                    <p>Artista ID: {{ $noticia->id_artista }}</p>
+                </div>
+            </div>
         @endforeach
-        </tbody>
-    </table>
+    </div>
 </div>
+@include('pie')
+</body>
+</html>
