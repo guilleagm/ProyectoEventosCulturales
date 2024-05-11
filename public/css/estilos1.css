@@ -466,8 +466,10 @@ main section button[type="submit"]:hover {
 
 .news-container {
     display: flex;
-    flex-direction: column; /* Cambio a layout vertical */
-    justify-content: center; /* Centra los items en la dirección principal (verticalmente) */
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-left: -15px;
+    margin-right: -15px;
 }
 
 .news-image {
@@ -477,27 +479,21 @@ main section button[type="submit"]:hover {
     border-radius: 4px; /* Bordes redondeados para la imagen */
 }
 
-.news-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Asegura que el espacio se distribuya uniformemente */
-    padding: 20px;
-}
-
 .news-card {
-    width: calc(33.333% - 20px); /* Ajusta para 3 tarjetas por fila teniendo en cuenta los márgenes */
-    margin: 10px;
+    margin: 10px 15px; /* Añade margen alrededor de cada tarjeta */
     background-color: #fff;
     border: 1px solid #ddd;
     box-shadow: 0 2px 6px rgba(0,0,0,0.12);
     border-radius: 8px;
-    overflow: hidden;
+    padding: 15px; /* Relleno dentro de cada tarjeta */
+    width: 27%;
 }
 
 .news-card img {
-    width: 100%;
+    width: 100%; /* Ajusta la imagen para que ocupe el ancho total de la tarjeta */
     height: 200px; /* Altura fija para la imagen */
-    object-fit: cover;
+    object-fit: cover; /* Asegura que la imagen cubra completamente el área asignada sin distorsión */
+    border-radius: 4px; /* Esquinas redondeadas para la imagen */
 }
 
 .news-info {
@@ -524,13 +520,6 @@ main section button[type="submit"]:hover {
 
 .news-info a:hover {
     text-decoration: underline;
-}
-.news-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-left: -15px;
-    margin-right: -15px;
 }
 
 .news-image {
@@ -601,4 +590,58 @@ main section button[type="submit"]:hover {
 
 .artist-details h2 {
     color: #333;
+}
+
+.news-item {
+    border: 1px solid #ddd; /* Bordes sutiles para las tarjetas */
+    background-color: #fff; /* Fondo blanco para cada tarjeta */
+    border-radius: 8px; /* Esquinas redondeadas para suavizar el diseño */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave para dar profundidad */
+    margin: 10px 5px; /* Espaciado entre tarjetas */
+    padding: 15px; /* Relleno interno para separar el contenido de los bordes */
+    display: flex; /* Uso de Flexbox para la estructura interna */
+    flex-direction: column; /* Orientación vertical de los elementos internos */
+    align-items: center; /* Alineación central de los elementos */
+    justify-content: space-between; /* Distribución del espacio interior */
+    height: 150px; /* Altura fija para mantener consistencia */
+}
+
+.news-image {
+    width: 33%; /* La imagen ocupa todo el ancho posible */
+    height: 100px; /* Altura fija para las imágenes */
+    object-fit: cover; /* Ajuste de la imagen para cubrir el espacio asignado */
+    border-radius: 5px; /* Esquinas redondeadas para las imágenes */
+}
+
+.news-content {
+    width: 100%; /* El contenido ocupa todo el ancho de la tarjeta */
+    padding: 10px 0; /* Espaciado vertical dentro del contenido */
+    text-align: center; /* Texto centrado para una lectura clara */
+}
+
+.news-content h3 {
+    margin-bottom: 5px; /* Espaciado debajo del título */
+    font-size: 1.1em; /* Tamaño de fuente del título */
+    color: #333; /* Color oscuro para el texto del título */
+}
+
+.news-content p {
+    font-size: 0.9em; /* Tamaño de fuente para el cuerpo del texto */
+    color: #666; /* Color gris para el texto, menos prominente que el título */
+    overflow: hidden; /* Oculta texto que exceda el espacio */
+    text-overflow: ellipsis; /* Añade elipses si el texto es demasiado largo */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limita el texto a 3 líneas */
+    -webkit-box-orient: vertical;
+}
+
+.news-content a {
+    margin-top: 10px; /* Espacio antes del enlace */
+    color: #6dc0b4; /* Color temático para los enlaces */
+    text-decoration: none; /* Sin subrayado */
+    font-weight: bold; /* Texto en negrita para el enlace */
+}
+
+.news-content a:hover {
+    text-decoration: underline; /* Subrayado al pasar el ratón para indicar clic */
 }

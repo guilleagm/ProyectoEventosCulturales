@@ -3,7 +3,7 @@
     @if (Auth::user()->esAdmin)
 <div class="container">
     <h2>Crear Noticia</h2>
-    <form method="POST" action="{{ route('noticias.store') }}">
+    <form method="POST" action="{{ route('noticias.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="titulo">Título:</label>
@@ -12,6 +12,10 @@
         <div class="form-group">
             <label for="texto">Texto de la Noticia:</label>
             <textarea name="texto" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="imagen">Imagen:</label>
+            <input type="file" name="imagen" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="id_artista">Artista:</label>
@@ -31,6 +35,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Publicar Noticia</button>
     </form>
+
 </div>
     @endif
 @endauth

@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/css/estilos1.css">
 <div class="container">
     <h1>{{ $noticia->titulo }}</h1>
+    <img src="{{ asset('/images/' . $noticia->imagen) }}" alt="Imagen de {{ $noticia->titulo }}" style="width:100%; max-width:600px;">
     <p><strong>Texto de la Noticia:</strong> {{ $noticia->texto }}</p>
     <p><strong>Artista ID:</strong> {{ $noticia->id_artista }}</p>
     <p><strong>Usuario ID:</strong> {{ $noticia->id_usuario }}</p>
