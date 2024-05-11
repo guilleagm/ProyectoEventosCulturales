@@ -20,10 +20,27 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function show(User $user)
+    public function verPerfil($id)
     {
-        $artista = Artista::where('id_usuario', $user->id)->first();
-        return view('perfilUsuario', compact('user','artista'));
+        $user = User::findOrFail($id);
+        $artista = Artista::where('id_usuario', $id)->first();
+
+        // Comprueba si el perfil que se está viendo pertenece a un artista
+        $esArtistaPerfil = !is_null($artista);
+
+        // Comprueba si el usuario logueado es un artista
+        $esArtistaLogueado = Auth::check() && Artista::where('id_usuario', Auth::id())->exists();
+
+        // Determina si el usuario logueado puede registrarse como artista
+        $puedeRegistrarArtista = Auth::check() && !$esArtistaLogueado && $id == Auth::id();
+
+        return view('perfilUsuario', [
+            'user' => $user,
+            'artista' => $artista,
+            'esArtistaPerfil' => $esArtistaPerfil,
+            'esArtistaLogueado' => $esArtistaLogueado,
+            'puedeRegistrarArtista' => $puedeRegistrarArtista
+        ]);
     }
 
     public function eliminarUsuario(User $user)
@@ -33,26 +50,6 @@ class UserController extends Controller
             return redirect()->route('admin.users.index')->with('success', 'Usuario eliminado correctamente.');
         }
         abort(403, 'No autorizado.');
-    }
-
-    public function verPerfil($id)
-    {
-        $user = User::findOrFail($id);
-        $artista = Artista::where('id_usuario', $id)->first();
-
-        // Comprueba si el usuario consultado es un artista
-        $esArtistaPerfil = !is_null($artista);
-
-        // Comprueba si el usuario logueado es un artista, mantiene el nombre de la variable como $esArtista
-        $esArtista = Auth::check() && Artista::where('id_usuario', Auth::id())->exists();
-
-        // Retorna la vista con todas las variables necesarias
-        return view('perfilUsuario', [
-            'user' => $user,
-            'artista' => $artista,
-            'esArtistaPerfil' => $esArtistaPerfil,
-            'esArtista' => $esArtista
-        ]);
     }
 
     public function edit($id)

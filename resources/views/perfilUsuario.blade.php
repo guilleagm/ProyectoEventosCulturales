@@ -12,9 +12,10 @@
         <p><strong>Nombre de Usuario:</strong> {{ $user->nombre_usuario }}</p>
         <p><strong>Correo:</strong> {{ $user->correo }}</p>
 
+        <!-- Artist details, only shown if the profile belongs to an artist -->
         @if ($artista)
             <h2>Datos del Artista</h2>
-            <p><strong>Nombre Artístico:</strong> <a href="{{ route('users.show', $artista->id) }}">{{ $artista->nombre }}</a></p>
+            <p><strong>Nombre Artístico:</strong> <a href="{{ route('users.profile', $artista->id) }}">{{ $artista->nombre }}</a></p>
             <p><strong>Biografía:</strong> {{ $artista->biografia }}</p>
             <p><strong>Género:</strong> {{ $artista->genero }}</p>
 
@@ -34,11 +35,16 @@
                 @endif
             @endif
         @endif
-        @if (!$esArtista)
-            <a href="{{ route('registro.artista') }}">Registrarse como artista</a><br>
+
+        <!-- Button to register as artist, shown only if the logged-in user is viewing their own profile and they are not an artist -->
+        @if ($puedeRegistrarArtista)
+            <a href="{{ route('registro.artista') }}" class="btn btn-primary">Registrarse como artista</a><br>
         @endif
+
+        <!-- Edit profile link -->
         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Editar Perfil</a>
 
+        <!-- Admin options to delete another user -->
         @if (auth()->check() && auth()->user()->esAdmin && auth()->user()->id != $user->id)
             <form action="{{ route('users.eliminarUsuario', $user->id) }}" method="POST">
                 @csrf
@@ -47,6 +53,7 @@
             </form>
         @endif
 
+        <!-- User options to delete own account -->
         @if (auth()->check() && auth()->user()->id == $user->id)
             <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                 @csrf

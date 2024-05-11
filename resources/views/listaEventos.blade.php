@@ -1,6 +1,10 @@
-<link rel="stylesheet" href="/css/estilos1.css">
+<head>
+    <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
+    <script src="/js/filtradoEventos.js" ></script>
+</head>
 <div class="container">
-    <h1>Lista de Eventos</h1>
+    @include('menu')
+    <h1>Eventos</h1>
 
     <form action="{{ route('eventos.filtrar') }}" method="GET">
         <label for="categoria">Filtrar por Categoría:</label>
@@ -13,28 +17,23 @@
         <button type="submit">Filtrar</button>
     </form>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Título</th>
-            <th>Fecha</th>
-            <th>ID Sede</th>
-            <th>Estado</th>
-            <th>Num entradas disponibles</th>
-            <th>Categoría</th>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="view-options">
+        <button class="view-button" data-view="2">II</button>
+        <button class="view-button" data-view="3">III</button>
+        <button class="view-button" data-view="list">=</button>
+    </div>
+
+    <div class="event-container">
         @foreach ($eventos as $evento)
-            <tr>
-                <td><a href="{{ route('eventos.ver', $evento->id) }}">{{ $evento->titulo }}</a></td>
-                <td>{{ $evento->fecha }}</td>
-                <td>{{ $evento->id_sede }}</td>
-                <td>{{ $evento->estado }}</td>
-                <td>{{ $evento->num_entradas_disponibles }}</td>
-                <td>{{ $evento->categoria }}</td>
-            </tr>
+            <div class="event-item">
+                <img src="{{ asset('images/' . $evento->imagen) }}" alt="{{ $evento->titulo }}">
+                <div><a href="{{ route('eventos.ver', $evento->id) }}">{{ $evento->titulo }}</a></div>
+                <div>{{ $evento->fecha }}</div>
+                <div>{{ $evento->id_sede }}</div>
+                <div>{{ $evento->estado }}</div>
+                <div>{{ $evento->num_entradas_disponibles }}</div>
+                <div>{{ $evento->categoria }}</div>
+            </div>
         @endforeach
-        </tbody>
-    </table>
+    </div>
 </div>

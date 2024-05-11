@@ -356,3 +356,67 @@ main section button[type="submit"]:hover {
     margin-top: -1%;
     color: #1a202c;
 }
+/* Estilos para la sección de eventos */
+.event-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.event-item {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    text-align: center;
+    width: calc(50% - 20px); /* Default two items per row */
+}
+
+.event-item img {
+    width: 100%;
+    height: auto;
+}
+
+/* Estilos para los botones de visualización */
+.view-options {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.view-button {
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 5px;
+    border: none;
+    background-color: #f0f0f0;
+}
+
+.view-button.active {
+    background-color: #ccc;
+}
+.event-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    background-color: #ffffff; /* Fondo blanco para el item */
+    border: 1px solid #e0e0e0; /* Borde sutil */
+    border-radius: 8px; /* Bordes redondeados */
+    margin-bottom: 20px; /* Espacio entre elementos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+}
+
+.event-item img {
+    width: 100%; /* Ancho completo para responsividad */
+    max-width: 300px; /* Máximo ancho de imagen */
+    height: auto; /* Altura automática para mantener la proporción */
+    border-radius: 5px; /* Bordes redondeados para la imagen */
+    margin-bottom: 10px; /* Espacio debajo de la imagen */
+}
+
+.event-item td {
+    display: block; /* Hace que cada td actúe como un bloque para una mejor separación */
+    text-align: center; /* Centra el texto dentro del td */
+    margin-top: 5px; /* Margen superior para separar del elemento anterior */
+    width: 100%; /* Ancho completo para alinear con el contenedor */
+    font-size: 0.9em; /* Tamaño de fuente ligeramente reducido */
+}
