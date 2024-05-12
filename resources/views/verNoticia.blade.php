@@ -1,8 +1,18 @@
-<link rel="stylesheet" href="/css/estilos1.css">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CulturaVibe</title>
+    <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
+    <script src="/js/menuFotoPerfil.js"></script>
+</head>
+<body>
 <div class="container">
     @include('menu')
     <h1>{{ $noticia->titulo }}</h1>
-    <img src="{{ asset('/images/' . $noticia->imagen) }}" alt="Imagen de {{ $noticia->titulo }}" style="width:100%; max-width:600px;">
+    <img src="{{ asset('/images/' . $noticia->imagen) }}" alt="Imagen de {{ $noticia->titulo }}" id="imagenNoticia">
     <p><strong>Texto de la Noticia:</strong> {{ $noticia->texto }}</p>
     <p><strong>Artista ID:</strong> {{ $noticia->id_artista }}</p>
     <p><strong>Usuario ID:</strong> {{ $noticia->id_usuario }}</p>

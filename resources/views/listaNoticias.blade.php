@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias - CulturaVibe</title>
     <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
-    <script src="/js/filtradoEventos.js"></script>
+    <script src="/js/menuFotoPerfil.js"></script>
 </head>
 <body>
 <div class="container">

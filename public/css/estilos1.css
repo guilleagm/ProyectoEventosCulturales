@@ -21,6 +21,10 @@ body {
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
+#imagenNoticia {
+    width: 66%;
+}
+
 header {
     text-align: center;
     padding-bottom: 20px;
@@ -186,6 +190,8 @@ main section button[type="submit"]:hover {
 .search-form-container {
     display: flex;
     align-items: center;
+    flex: 2;
+    margin-left: 20%;
 }
 
 .search-form {
@@ -289,13 +295,6 @@ main section button[type="submit"]:hover {
 
 .nav-items a:hover {
     color: #6dc0b4;
-}
-
-.search-form-container {
-    display: flex;
-    align-items: center;
-    flex: 2; /* Asigna menos espacio al formulario */
-    justify-content: flex-end; /* Mueve el buscador hacia la derecha */
 }
 
 .search-form {
@@ -655,4 +654,131 @@ main section button[type="submit"]:hover {
     margin-left: -15px;
     margin-right: -15px;
     height: 100%;
+}
+.admin-section {
+    background-color: #f4f4f4; /* Fondo gris claro para distinguir la sección */
+    padding: 20px; /* Espaciado interno para separación visual */
+    border-radius: 8px; /* Bordes redondeados */
+    margin: 20px 0; /* Espacio vertical para separar de otros elementos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidad */
+}
+
+.admin-navigation {
+    display: flex;
+    flex-direction: column; /* Organiza los enlaces en columna */
+    align-items: flex-start; /* Alinea los enlaces a la izquierda */
+}
+
+.admin-navigation a {
+    color: #336699; /* Color azul para los enlaces */
+    text-decoration: none; /* Quita el subrayado */
+    padding: 10px; /* Espaciado para facilitar el clic */
+    margin-bottom: 5px; /* Espacio entre enlaces */
+    font-weight: bold; /* Texto en negrita */
+    transition: color 0.3s, background-color 0.3s; /* Transición suave al cambiar estados */
+}
+
+.admin-navigation a:hover, .admin-navigation a:focus {
+    color: #ffffff; /* Color de texto blanco al pasar el ratón o enfocar */
+    background-color: #555555; /* Fondo oscuro para resaltar */
+    border-radius: 4px; /* Bordes redondeados en hover/focus */
+}
+.profile-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ffffff; /* Añade un borde blanco para destacar la imagen */
+}
+
+.dropdown-content {
+    display: none; /* Inicialmente oculto */
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0; /* Alinea el desplegable a la derecha para que coincida con el perfil */
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-menu {
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.profile-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ffffff; /* Añadir un borde para hacerlo más visible, si es necesario */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0; /* Alinear el desplegable a la derecha del contenedor */
+    top: 48px; /* Desplazamiento desde la parte superior igual a la altura de la imagen más un poco de espacio */
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
 }

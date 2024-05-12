@@ -8,23 +8,24 @@
             <li><a href="{{ route('home') }}">Inicio</a></li>
             <li><a href="{{ route('eventos.listar') }}">Eventos</a></li>
             <li><a href="{{ route('noticias.index') }}">Noticias</a></li>
-            @auth
-            <li><a href="{{ route('users.profile', ['id' => Auth::id()]) }}">Perfil</a></li>
-            @if(Auth::user()->esAdmin)
-            <li><a href="{{ route('panelAdmin') }}">Panel Admin</a></li>
-                @endif
-            @endauth
             <li class="search-form-container">
                 <form action="{{ route('eventos.buscar') }}" method="GET" class="search-form">
                     <input type="text" name="artist-name" id="artist-name" placeholder="Buscar evento por artista">
                     <button type="submit" aria-label="Buscar artista">&#128269;</button>
                 </form>
             </li>
+            @auth
+                <li class="profile-menu">
+                    <img src="{{ asset('images/users/' . auth()->user()->imagen) }}" alt="Imagen de {{ auth()->user()->nombre_usuario }}" class="profile-image">
+                    <div class="dropdown-content">
+                        <a href="{{ route('users.profile', auth()->user()->id) }}">Ver Perfil</a>
+                        @if(Auth::user()->esAdmin)
+                            <a href="{{ route('panelAdmin') }}">Panel Admin</a>
+                        @endif
+                        <a href="{{ route('logout') }}">Cerrar Sesión</a>
+                    </div>
+                </li>
+            @endauth
         </ul>
     </nav>
-    @auth()
-    <nav class="logout-container">
-        <a href="{{ route('logout') }}" class="logout-btn">Cerrar Sesión</a>
-    </nav>
-    @endauth
 </header>
