@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/css/estilos1.css">
 <div class="container">
+    @include('menu')
     <h1>{{ $noticia->titulo }}</h1>
     <img src="{{ asset('/images/' . $noticia->imagen) }}" alt="Imagen de {{ $noticia->titulo }}" style="width:100%; max-width:600px;">
     <p><strong>Texto de la Noticia:</strong> {{ $noticia->texto }}</p>
@@ -16,3 +17,4 @@
         </form>
     @endif
 @endauth
+@include('pie')
