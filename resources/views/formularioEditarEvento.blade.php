@@ -15,32 +15,46 @@
     <form action="{{ route('eventos.actualizar', $evento->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <label for="titulo">Título:</label>
-        <input type="text" name="titulo" value="{{ $evento->titulo }}" required>
+        <div class="grupo-form">
+        <label for="titulo">Título:</label><br>
+        <input type="text" class="input-form" name="titulo" value="{{ $evento->titulo }}" required>
+        </div>
         <br>
-        <label for="fecha">Fecha:</label>
-        <input type="date" name="fecha" value="{{ $evento->fecha }}" required>
+        <div class="grupo-form">
+        <label for="fecha">Fecha:</label><br>
+        <input type="date" class="input-form" name="fecha" value="{{ $evento->fecha }}" required>
+        </div>
         <br>
-        <label for="categoria">Categoría:</label>
-        <input type="text" name="categoria" value="{{ $evento->categoria }}" required>
+        <div class="grupo-form">
+        <label for="categoria">Categoría:</label><br>
+        <input type="text" class="input-form" name="categoria" value="{{ $evento->categoria }}" required>
+        </div>
         <br>
-        <label for="num_entradas_disponibles">Número de Entradas Disponibles:</label>
-        <input type="number" name="num_entradas_disponibles" value="{{ $evento->num_entradas_disponibles }}" class="form-control" required>
+        <div class="grupo-form">
+        <label for="num_entradas_disponibles">Número de Entradas Disponibles:</label><br>
+        <input type="number" class="input-form" name="num_entradas_disponibles" value="{{ $evento->num_entradas_disponibles }}" class="form-control" required>
+        </div>
         <br>
-        <label for="estado">Estado:</label>
-        <select name="estado" class="form-control" required>
+        <div class="grupo-form">
+        <label for="estado">Estado:</label><br>
+        <select name="estado" class="input-form" required>
             <option value="En preparación" {{ $evento->estado == 'En preparación' ? 'selected' : '' }}>En preparación</option>
             <option value="Cancelado" {{ $evento->estado == 'Cancelado' ? 'selected' : '' }}>Cancelado</option>
             <option value="Terminado" {{ $evento->estado == 'Terminado' ? 'selected' : '' }}>Terminado</option>
         </select>
+        </div>
         <br>
-        <label for="id_sede">ID Sede:</label>
-        <input type="number" name="id_sede" value="{{ $evento->id_sede }}" required>
+        <div class="grupo-form">
+        <label for="id_sede">ID Sede:</label><br>
+        <input type="number" class="input-form" name="id_sede" value="{{ $evento->id_sede }}" required>
+        </div>
         <br>
-        <label for="imagen">Cambiar Imagen (Opcional):</label>
-        <input type="file" name="imagen" accept="image/*">
+        <div class="grupo-form">
+        <label for="imagen">Cambiar Imagen (Opcional):</label><br>
+        <input type="file" class="input-form" name="imagen" accept="image/*">
+        </div>
         <br>
-        <button type="submit">Actualizar Evento</button>
+        <button type="submit" class="btn btn-primary">Actualizar Evento</button>
     </form>
 </div>
 @include('pie')

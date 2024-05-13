@@ -15,26 +15,26 @@
     <form method="POST" action="{{ route('sedes.actualizar', $sede->id) }}">
         @csrf
         @method('PUT')
-        <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" id="nombre" class="form-control" value="{{ $sede->nombre }}" required>
+        <div class="grupo-form">
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" name="nombre" id="nombre" class="input-form" value="{{ $sede->nombre }}" required>
         </div>
-        <div class="form-group">
-            <label for="dirección">Dirección:</label>
-            <input type="text" name="dirección" id="dirección" class="form-control" value="{{ $sede->dirección }}" required>
+        <div class="grupo-form">
+            <label for="dirección">Dirección:</label><br>
+            <input type="text" name="dirección" id="dirección" class="input-form" value="{{ $sede->dirección }}" required>
         </div>
-        <div class="form-group">
-            <label for="capacidad">Capacidad:</label>
-            <input type="number" name="capacidad" id="capacidad" class="form-control" value="{{ $sede->capacidad }}" required>
+        <div class="grupo-form">
+            <label for="capacidad">Capacidad:</label><br>
+            <input type="number" name="capacidad" id="capacidad" class="input-form" value="{{ $sede->capacidad }}" required>
         </div>
-        <div class="form-group">
-            <label for="accesibilidad">Accesibilidad:</label>
-            <select name="accesibilidad" id="accesibilidad" class="form-control" required>
+        <div class="grupo-form">
+            <label for="accesibilidad">Accesibilidad:</label><br>
+            <select name="accesibilidad" id="accesibilidad" class="input-form" required>
                 <option value="1" {{ $sede->accesibilidad ? 'selected' : '' }}>Sí</option>
                 <option value="0" {{ !$sede->accesibilidad ? 'selected' : '' }}>No</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-success">Actualizar Sede</button>
+        <button type="submit" class="btn btn-primary">Actualizar Sede</button>
     </form>
 </div>
 @include('pie')

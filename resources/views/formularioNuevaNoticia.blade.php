@@ -16,29 +16,29 @@
     <h2>Crear Noticia</h2>
     <form method="POST" action="{{ route('noticias.store') }}" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
-            <label for="titulo">Título:</label>
-            <input type="text" name="titulo" id="titulo" class="form-control" required>
+        <div class="grupo-form">
+            <label for="titulo">Título:</label><br>
+            <input type="text" name="titulo" id="titulo" class="input-form" required>
         </div>
-        <div class="form-group">
-            <label for="texto">Texto de la Noticia:</label>
-            <textarea name="texto" class="form-control" required></textarea>
+        <div class="grupo-form">
+            <label for="texto">Texto de la Noticia:</label><br>
+            <textarea name="texto" class="input-form" required></textarea>
         </div>
-        <div class="form-group">
-            <label for="imagen">Imagen:</label>
-            <input type="file" name="imagen" class="form-control" required>
+        <div class="grupo-form">
+            <label for="imagen">Imagen:</label><br>
+            <input type="file" name="imagen" class="input-form" required>
         </div>
-        <div class="form-group">
-            <label for="id_artista">Artista:</label>
-            <select name="id_artista" class="form-control" required>
+        <div class="grupo-form">
+            <label for="id_artista">Artista:</label><br>
+            <select name="id_artista" class="input-form" required>
                 @foreach(App\Models\Artista::all() as $artista)
                     <option value="{{ $artista->id }}">{{ $artista->nombre }}</option>
                 @endforeach
             </select>
         </div>
-        <div class="form-group">
-            <label for="id_usuario">Usuario:</label>
-            <select name="id_usuario" class="form-control" required>
+        <div class="grupo-form">
+            <label for="id_usuario">Usuario:</label><br>
+            <select name="id_usuario" class="input-form" required>
                 @foreach(App\Models\User::all() as $usuario)
                     <option value="{{ $usuario->id }}">{{ $usuario->nombre_usuario }}</option>
                 @endforeach

@@ -16,22 +16,26 @@
     <h1>Crear Nueva Sede</h1>
     <form method="POST" action="{{ route('sedes.store') }}">
         @csrf
-        <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" required><br>
-
-        <label for="dirección">Dirección:</label>
-        <input type="text" name="dirección" required><br>
-
-        <label for="capacidad">Capacidad:</label>
-        <input type="number" name="capacidad" required><br>
-
-        <label for="accesibilidad">Accesibilidad:</label>
-        <select name="accesibilidad">
+        <div class="grupo-form">
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" class="input-form" name="nombre" required><br>
+        </div>
+        <div class="grupo-form">
+        <label for="dirección">Dirección:</label><br>
+        <input type="text" class="input-form" name="dirección" required><br>
+        </div>
+        <div class="grupo-form">
+        <label for="capacidad">Capacidad:</label><br>
+        <input type="number" class="input-form" name="capacidad" required><br>
+        </div>
+        <div class="grupo-form">
+        <label for="accesibilidad">Accesibilidad:</label><br>
+        <select name="accesibilidad" class="input-form">
             <option value="1">Sí</option>
             <option value="0">No</option>
         </select><br>
-
-        <button type="submit">Crear Sede</button>
+        </div>
+        <button type="submit" class="btn btn-primary">Crear Sede</button>
     </form>
 </div>
     @endif

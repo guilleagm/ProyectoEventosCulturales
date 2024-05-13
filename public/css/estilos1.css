@@ -12,6 +12,7 @@ body {
 
 .container {
     width: 80%;
+    flex: 1 0 auto;
     max-width: 1200px;
     background: #ffffff;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -19,6 +20,7 @@ body {
     padding: 40px;
     overflow: hidden;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
+    text-align: center;
 }
 
 #imagenNoticia {
@@ -40,7 +42,6 @@ header nav a {
     transition: color 0.3s;
 }
 
-/* Main sections */
 main {
     display: flex;
     flex-direction: column;
@@ -121,12 +122,20 @@ main section button[type="submit"]:hover {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 350px;
+    height: 300px;
 }
 
 .carousel-item img {
     max-width: 100%;
     border-radius: 8px;
     margin-bottom: 15px;
+    height: 50%;
+    object-fit: cover;
 }
 
 .carousel-item h3 {
@@ -146,33 +155,27 @@ main section button[type="submit"]:hover {
 .carousel-item:hover {
     transform: scale(1.05);
 }
-/* Estilos del menú */
-/* Estilos del encabezado */
+
 .main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #ffffff;
+    padding: 1% 2%;
+    background-color: #f5f5fc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 2%;
+    width: 96%;
 }
 
 .nav-items {
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 10px;
     margin: 0;
     padding: 0;
-}
-
-.nav-items li {
-    display: flex;
-    align-items: center;
-    margin-right: -20px;
-    font-size: 1em;
+    flex: 3;
 }
 
 .nav-items a {
@@ -181,6 +184,14 @@ main section button[type="submit"]:hover {
     font-weight: bold;
     transition: color 0.3s;
     padding: 5px 10px;
+    white-space: nowrap;
+}
+
+.nav-items li {
+    display: flex;
+    align-items: center;
+    margin-right: -20px;
+    font-size: 1em;
 }
 
 .nav-items a:hover {
@@ -197,14 +208,16 @@ main section button[type="submit"]:hover {
 .search-form {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 0.5em;
 }
 
 .search-form input[type="text"] {
-    padding: 5px;
+    padding: 0.5em;
     border: 1px solid #cccccc;
     border-radius: 5px;
     outline: none;
+    width: 100%;
+    max-width: 180px;
 }
 
 .search-form button {
@@ -219,46 +232,10 @@ main section button[type="submit"]:hover {
 .search-form button:hover {
     color: #6dc0b4;
 }
-/* Fondo y logo */
-.main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background-color: #f5f5fc; /* Lavanda Claro */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.nav-items a {
-    text-decoration: none;
-    color: #333; /* Negro Suave */
-    font-weight: bold;
-    transition: color 0.3s;
-    padding: 5px 10px;
-}
 
 .nav-items a.active {
-    color: #6c63ff; /* Lavanda Oscuro */
+    color: #6c63ff;
 }
-
-.nav-items a:hover {
-    color: #6dc0b4;
-}
-/* Estilos del encabezado */
-.main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1% 2%;
-    background-color: #f5f5fc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin-bottom: 2%;
-    width: 96%; /* Ajusta el ancho del contenedor */
-}
-
 
 .nav-logo h1 {
     font-size: 1.5em;
@@ -271,91 +248,17 @@ main section button[type="submit"]:hover {
     color: #1a202c;
 }
 
-.nav-items {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 2%; /* Usa un espacio entre enlaces en porcentaje */
-    padding: 0;
-    flex: 3; /* Asigna más espacio al conjunto de enlaces */
-}
-
-.nav-items a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: color 0.3s;
-    padding: 0.5em 1em;
-    white-space: nowrap; /* Evita el salto de línea en el enlace */
-}
-
-.nav-items a.active {
-    color: #6c63ff;
-}
-
-.nav-items a:hover {
-    color: #6dc0b4;
-}
-
-.search-form {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-}
-
-.search-form input[type="text"] {
-    padding: 0.5em;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    outline: none;
-    width: 100%; /* Haz que el ancho se ajuste automáticamente */
-    max-width: 180px; /* Limita el ancho máximo del campo de búsqueda */
-}
-
-.search-form button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2em;
-    color: #333;
-    transition: color 0.2s;
-}
-
-.search-form button:hover {
-    color: #6dc0b4;
-}
-.event-carousel {
-    display: flex;
-    flex-wrap: nowrap; /* Evita que las imágenes se ajusten automáticamente */
-    overflow-x: hidden; /* Agrega desplazamiento horizontal */
-    scroll-snap-type: x mandatory; /* Hace que el desplazamiento se ajuste a las imágenes */
-}
-
-.carousel-item {
-    flex: 0 0 auto; /* Evita que las imágenes se estiren */
-    scroll-snap-align: start; /* Alinea cada imagen con el inicio del contenedor */
-    margin-right: 20px; /* Ajusta el espacio entre las imágenes */
-    margin-bottom: 20px;
-    width: 350px; /* Ancho fijo para cada elemento del carrusel */
-    height: 300px; /* Alto fijo para cada elemento del carrusel */
-}
-
-.carousel-item img {
-    width: 100%; /* Ajusta el ancho de la imagen al 100% del contenedor */
-    height: 50%; /* Ajusta la altura al 100% del contenedor */
-    object-fit: cover; /* Escala la imagen para cubrir todo el contenedor */
-}
-
 .logout-container {
     display: flex;
     justify-content: flex-end;
 }
+
 .logout-btn{
     font-size: 1em;
     margin-top: -1%;
     color: #1a202c;
 }
-/* Estilos para la sección de eventos */
+
 .event-container {
     display: flex;
     flex-wrap: wrap;
@@ -363,18 +266,27 @@ main section button[type="submit"]:hover {
 }
 
 .event-item {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: calc(50% - 20px);
     text-align: center;
-    width: calc(50% - 20px); /* Default two items per row */
 }
 
 .event-item img {
     width: 100%;
+    max-width: 300px;
     height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-/* Estilos para los botones de visualización */
 .view-options {
     display: flex;
     justify-content: flex-end;
@@ -392,76 +304,44 @@ main section button[type="submit"]:hover {
 .view-button.active {
     background-color: #ccc;
 }
-.event-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-    background-color: #ffffff; /* Fondo blanco para el item */
-    border: 1px solid #e0e0e0; /* Borde sutil */
-    border-radius: 8px; /* Bordes redondeados */
-    margin-bottom: 20px; /* Espacio entre elementos */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
-}
-
-.event-item img {
-    width: 100%; /* Ancho completo para responsividad */
-    max-width: 300px; /* Máximo ancho de imagen */
-    height: auto; /* Altura automática para mantener la proporción */
-    border-radius: 5px; /* Bordes redondeados para la imagen */
-    margin-bottom: 10px; /* Espacio debajo de la imagen */
-}
 
 .event-item td {
-    display: block; /* Hace que cada td actúe como un bloque para una mejor separación */
-    text-align: center; /* Centra el texto dentro del td */
-    margin-top: 5px; /* Margen superior para separar del elemento anterior */
-    width: 100%; /* Ancho completo para alinear con el contenedor */
-    font-size: 0.9em; /* Tamaño de fuente ligeramente reducido */
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+    width: 100%;
+    font-size: 0.9em;
 }
-/* Estilos generales del footer */
+
 .site-footer {
     width: 90%;
-    background-color: #2c3e50; /* Color de fondo oscuro para el footer */
-    color: #fff; /* Letras blancas para contraste */
-    text-align: center; /* Alineación del texto al centro */
-    margin-top: 30px; /* Espacio antes del footer */
-    font-size: 0.9em; /* Tamaño de fuente ligeramente más pequeño */
+    background-color: #2c3e50;
+    color: #fff;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9em;
 }
 
 .container-footer {
     width: 100%;
-    display: flex; /* Uso de Flexbox para distribución */
-    justify-content: space-between; /* Distribución de espacio entre los elementos */
-    align-items: center; /* Alineación vertical de los elementos */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-left: 5%;
 }
 
 .footer-links {
-    list-style: none; /* Eliminación del estilo de lista */
-    padding: 0; /* Eliminación del padding predeterminado */
-    display: flex; /* Alineación en línea de los enlaces */
-    gap: 20px; /* Espacio entre los enlaces */
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
     margin-right: 10%;
 }
 
 .footer-links a {
-    color: #ffffff; /* Color de los enlaces */
-    text-decoration: none; /* Sin subrayado en los enlaces */
-    transition: color 0.3s; /* Transición suave al cambiar el color */
-}
-
-.container {
-    flex: 1 0 auto; /* El contenedor crece y se encoge, pero no se aplasta */
-    width: 80%;
-    max-width: 1200px;
-    margin: auto; /* Centrado horizontal */
-    background: #ffffff;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 40px;
-    overflow: hidden;
-    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
 .news-container {
@@ -475,27 +355,28 @@ main section button[type="submit"]:hover {
 }
 
 .news-image {
-    width: 100%; /* La imagen ocupa todo el ancho de la tarjeta */
-    height: auto; /* Altura automática para mantener la proporción */
-    object-fit: cover; /* Asegura que la imagen cubra todo el espacio disponible */
-    border-radius: 4px; /* Bordes redondeados para la imagen */
+    width: 33%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .news-card {
-    margin: 10px 15px; /* Añade margen alrededor de cada tarjeta */
+    margin: 10px 15px;
     background-color: #fff;
     border: 1px solid #ddd;
     box-shadow: 0 2px 6px rgba(0,0,0,0.12);
     border-radius: 8px;
-    padding: 15px; /* Relleno dentro de cada tarjeta */
+    padding: 15px;
     width: 27%;
 }
 
 .news-card img {
-    width: 100%; /* Ajusta la imagen para que ocupe el ancho total de la tarjeta */
-    height: 200px; /* Altura fija para la imagen */
-    object-fit: cover; /* Asegura que la imagen cubra completamente el área asignada sin distorsión */
-    border-radius: 4px; /* Esquinas redondeadas para la imagen */
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
 }
 
 .news-info {
@@ -524,13 +405,6 @@ main section button[type="submit"]:hover {
     text-decoration: underline;
 }
 
-.news-image {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 10px;
-}
 .profile {
     display: flex;
     flex-direction: column;
@@ -577,7 +451,6 @@ main section button[type="submit"]:hover {
     opacity: 0.8;
 }
 
-/* Detalles del artista */
 .artist-details {
     background-color: #e0f7fa;
     padding: 15px;
@@ -595,57 +468,50 @@ main section button[type="submit"]:hover {
 }
 
 .news-item {
-    border: 1px solid #ddd; /* Bordes sutiles para las tarjetas */
-    background-color: #fff; /* Fondo blanco para cada tarjeta */
-    border-radius: 8px; /* Esquinas redondeadas para suavizar el diseño */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave para dar profundidad */
-    margin: 1% 5%; /* Espaciado entre tarjetas */
-    padding: 15px; /* Relleno interno para separar el contenido de los bordes */
-    display: flex; /* Uso de Flexbox para la estructura interna */
-    flex-direction: column; /* Orientación vertical de los elementos internos */
-    align-items: center; /* Alineación central de los elementos */
-    justify-content: space-between; /* Distribución del espacio interior */
-    height: 150px; /* Altura fija para mantener consistencia */
-}
-
-.news-image {
-    width: 33%; /* La imagen ocupa todo el ancho posible */
-    height: 100px; /* Altura fija para las imágenes */
-    object-fit: cover; /* Ajuste de la imagen para cubrir el espacio asignado */
-    border-radius: 5px; /* Esquinas redondeadas para las imágenes */
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 1% 5%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 150px;
 }
 
 .news-content {
-    width: 100%; /* El contenido ocupa todo el ancho de la tarjeta */
-    padding: 10px 0; /* Espaciado vertical dentro del contenido */
-    text-align: center; /* Texto centrado para una lectura clara */
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
 }
 
 .news-content h3 {
-    margin-bottom: 5px; /* Espaciado debajo del título */
-    font-size: 1.1em; /* Tamaño de fuente del título */
-    color: #333; /* Color oscuro para el texto del título */
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    color: #333;
 }
 
 .news-content p {
-    font-size: 0.9em; /* Tamaño de fuente para el cuerpo del texto */
-    color: #666; /* Color gris para el texto, menos prominente que el título */
-    overflow: hidden; /* Oculta texto que exceda el espacio */
-    text-overflow: ellipsis; /* Añade elipses si el texto es demasiado largo */
+    font-size: 0.9em;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Limita el texto a 3 líneas */
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
 
 .news-content a {
-    margin-top: 10px; /* Espacio antes del enlace */
-    color: #6dc0b4; /* Color temático para los enlaces */
-    text-decoration: none; /* Sin subrayado */
-    font-weight: bold; /* Texto en negrita para el enlace */
+    margin-top: 10px;
+    color: #6dc0b4;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .news-content a:hover {
-    text-decoration: underline; /* Subrayado al pasar el ratón para indicar clic */
+    text-decoration: underline;
 }
 .news-contenedor {
     display: flex;
@@ -656,36 +522,32 @@ main section button[type="submit"]:hover {
     height: 100%;
 }
 .admin-section {
-    background-color: #f4f4f4; /* Fondo gris claro para distinguir la sección */
-    padding: 20px; /* Espaciado interno para separación visual */
-    border-radius: 8px; /* Bordes redondeados */
-    margin: 20px 0; /* Espacio vertical para separar de otros elementos */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidad */
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .admin-navigation {
     display: flex;
-    flex-direction: column; /* Organiza los enlaces en columna */
-    align-items: flex-start; /* Alinea los enlaces a la izquierda */
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .admin-navigation a {
-    color: #336699; /* Color azul para los enlaces */
-    text-decoration: none; /* Quita el subrayado */
-    padding: 10px; /* Espaciado para facilitar el clic */
-    margin-bottom: 5px; /* Espacio entre enlaces */
-    font-weight: bold; /* Texto en negrita */
-    transition: color 0.3s, background-color 0.3s; /* Transición suave al cambiar estados */
+    color: #336699;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    transition: color 0.3s, background-color 0.3s;
 }
 
 .admin-navigation a:hover, .admin-navigation a:focus {
-    color: #ffffff; /* Color de texto blanco al pasar el ratón o enfocar */
-    background-color: #555555; /* Fondo oscuro para resaltar */
-    border-radius: 4px; /* Bordes redondeados en hover/focus */
-}
-.profile-menu {
-    position: relative;
-    display: inline-block;
+    color: #ffffff;
+    background-color: #555555;
+    border-radius: 4px;
 }
 
 .profile-image {
@@ -693,51 +555,6 @@ main section button[type="submit"]:hover {
     height: 40px;
     border-radius: 50%;
     cursor: pointer;
-    border: 2px solid #ffffff; /* Añade un borde blanco para destacar la imagen */
-}
-
-.dropdown-content {
-    display: none; /* Inicialmente oculto */
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    right: 0; /* Alinea el desplegable a la derecha para que coincida con el perfil */
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-.main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-.nav-items {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.profile-menu {
-    position: relative;
-    cursor: pointer;
-}
-
-.profile-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
     border: 2px solid #ffffff;
 }
 
@@ -749,30 +566,7 @@ main section button[type="submit"]:hover {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     right: 0;
-}
-
-.profile-menu {
-    position: relative;
-    display: inline-block;
-}
-
-.profile-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid #ffffff; /* Añadir un borde para hacerlo más visible, si es necesario */
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    right: 0; /* Alinear el desplegable a la derecha del contenedor */
-    top: 48px; /* Desplazamiento desde la parte superior igual a la altura de la imagen más un poco de espacio */
+    top: 48px;
 }
 
 .dropdown-content a {
@@ -781,4 +575,23 @@ main section button[type="submit"]:hover {
     text-decoration: none;
     display: block;
     text-align: left;
+}
+
+.profile-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.grupo-form {
+    margin-bottom: 20px;
+}
+
+.input-form {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: center;
+    width: 50%;
+    margin-top: 1%;
 }
