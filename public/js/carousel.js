@@ -23,14 +23,14 @@ $(document).ready(function() {
         autoplay: true,
         autoplaySpeed: 3000,
         pauseOnHover: true,
-        vertical: true,  // Habilita el desplazamiento vertical
-        verticalSwiping: true, // Permite el deslizamiento vertical con gestos táctiles
+        vertical: true,
+        verticalSwiping: true,
         responsive: [
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
-                    vertical: false, // Deshabilita vertical en pantallas pequeñas
+                    vertical: false,
                     verticalSwiping: false
                 }
             }

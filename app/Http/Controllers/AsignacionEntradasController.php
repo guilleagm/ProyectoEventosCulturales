@@ -19,7 +19,6 @@ class AsignacionEntradasController extends Controller
             'num_entradas_asignadas' => 'required|integer|min:1'
         ]);
 
-        // Verificar que hay suficientes entradas disponibles
         if ($evento->num_entradas_disponibles < $request->num_entradas_asignadas) {
             return back()->with('error', 'No hay suficientes entradas disponibles.');
         }

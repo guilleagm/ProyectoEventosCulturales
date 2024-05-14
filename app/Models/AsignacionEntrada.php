@@ -21,4 +21,7 @@ class AsignacionEntrada extends Model
     {
         return $this->belongsTo(User::class, 'id_usuario');
     }
+    public function evento() {
+        return $this->belongsTo(Evento::class, 'id_evento');
+    }
 }

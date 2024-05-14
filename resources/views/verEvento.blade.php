@@ -28,8 +28,12 @@
     <p><strong>Categoría:</strong> {{ $evento->categoria }}</p>
 
     <a href="{{ route('eventos.editar', $evento->id) }}" class="btn btn-primary">Editar Evento</a>
-    <a href="{{ route('entradas.mostrar_compra', $evento->id) }}" class="btn btn-primary">Comprar Entradas</a>
+    @if(!$usuarioHaComprado)
+        <a href="{{ route('entradas.mostrar_compra', $evento->id) }}" class="btn btn-primary">Comprar Entradas</a>
+    @endif
+    @if($usuarioHaComprado)
     <a href="{{ route('entradas.confirmar_cancelacion', $evento->id) }}" class="btn btn-primary">Devolver Entradas</a>
+    @endif
 </div>
 
 <div class="container">
