@@ -9,6 +9,9 @@
 <body>
 <div class="login-wrapper">
     <div class="branding-section">
+        <div id="login">
+        <img src="/images/4.png" alt="Logo CulturaVibe" width="50%">
+        CulturaVibe</div>
     </div>
 
     <div class="form-section">
@@ -16,11 +19,11 @@
         <form method="POST" action="{{ route('login.submit') }}">
             @csrf
             <div class="form-group">
-                <label for="email">Correo</label>
+                <label for="email">Correo:</label>
                 <input type="email" id="email" name="correo" class="input-field" placeholder="Introduce tu correo electrónico" required>
             </div>
             <div class="form-group">
-                <label for="password">Contraseña</label>
+                <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="contraseña" class="input-field" placeholder="Contraseña" required>
             </div>
             <button type="submit" class="login-button">Iniciar sesión</button>
@@ -28,9 +31,6 @@
                 <br>
                 ¿No tienes cuenta aún?
                 <a href="{{ route('register') }}">Regístrate</a>
-            </div>
-            <div>
-                Iniciar sesión con Google
             </div>
         </form>
     </div>

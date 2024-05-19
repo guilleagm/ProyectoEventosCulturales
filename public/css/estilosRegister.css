@@ -35,7 +35,8 @@ body {
     justify-content: center;
     align-items: center;
     padding: 40px;
-    color: #ffffff;
+    color: #000000;
+    text-align: center;
 }
 
 .brand-logo {
@@ -119,4 +120,20 @@ body {
 .register-button:hover {
     background-color: #5db09e;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+#login {
+    font-size: 2em;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

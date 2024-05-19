@@ -17,13 +17,13 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
-    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transform transition */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 /* Enlarge the login box when hovered */
 .login-wrapper:hover {
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05); /* Slightly increase size */
+    transform: scale(1.05);
 }
 
 /* Branding section */
@@ -35,7 +35,8 @@ body {
     justify-content: center;
     align-items: center;
     padding: 40px;
-    color: #ffffff;
+    color: #000000;
+    text-align: center;
 }
 
 .brand-logo {
@@ -95,12 +96,12 @@ body {
     border-radius: 5px;
     margin-top: 5px;
     font-size: 0.9em;
-    transition: background-color 0.2s ease-in-out; /* Smooth color transition */
+    transition: background-color 0.2s ease-in-out;
 }
 
 /* Highlight the input fields on hover */
 .input-field:hover {
-    background-color: #f0f0f0; /* Light gray */
+    background-color: #f0f0f0;
 }
 
 .checkbox-group {
@@ -143,4 +144,20 @@ body {
 .forgot-password:hover {
     text-decoration: underline;
     color: #4b9b9f;
+}
+
+#login {
+    font-size: 2em;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

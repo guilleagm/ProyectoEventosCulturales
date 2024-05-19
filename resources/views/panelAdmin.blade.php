@@ -14,10 +14,10 @@
 @if (Auth::user()->esAdmin)
     <section class="admin-section">
         <nav class="admin-navigation">
-            <a href="{{ route('formNuevaSede') }}" id="newVenue">Crear Nueva Sede</a><br>
-            <a href="{{ route('formNuevaNoticia') }}" id="newNews">Generar Noticia</a><br>
-            <a href="{{ route('admin.users.index') }}" id="userList">Lista usuarios</a><br>
-            <a href="{{ route('sedes.listaSedes') }}" id="viewVenues">Ver sedes</a><br>
+            <a href="{{ route('formNuevaSede') }}">Crear Nueva Sede</a><br>
+            <a href="{{ route('formNuevaNoticia') }}">Generar Noticia</a><br>
+            <a href="{{ route('admin.users.index') }}">Lista usuarios</a><br>
+            <a href="{{ route('sedes.listaSedes') }}">Ver sedes</a><br>
         </nav>
     </section>
 @endif

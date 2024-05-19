@@ -9,6 +9,9 @@
 <body>
 <div class="register-wrapper">
     <div class="branding-section">
+        <div id="login">
+            <img src="/images/4.png" alt="Logo CulturaVibe" width="50%">
+            CulturaVibe</div>
     </div>
 
     <div class="form-section">

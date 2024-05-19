@@ -15,13 +15,13 @@
 
     <form action="{{ route('eventos.filtrar') }}" method="GET">
         <label for="categoria">Filtrar por Categoría:</label>
-        <select name="categoria" id="categoria">
+        <select name="categoria" id="categoria" class="btn btn-primary">
             <option value="">Todas las Categorías</option>
             <option value="concierto">Concierto</option>
             <option value="teatro">Teatro</option>
             <option value="recital de poesía">Recital de Poesía</option>
         </select>
-        <button type="submit">Filtrar</button>
+        <button type="submit" class="btn btn-primary">Filtrar</button>
     </form>
 
     <div class="view-options">
@@ -29,7 +29,7 @@
         <button class="view-button" data-view="3">III</button>
         <button class="view-button" data-view="list">=</button>
     </div>
-
+    <br>
     <div class="event-container">
         @foreach ($eventos as $evento)
             <div class="event-item">
