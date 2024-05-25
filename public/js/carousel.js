@@ -27,7 +27,6 @@ $(document).ready(function() {
         verticalSwiping: true,
         responsive: [
             {
-                breakpoint: 480,
                 settings: {
                     slidesToShow: 1
                 }

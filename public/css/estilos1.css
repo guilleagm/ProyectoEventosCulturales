@@ -803,9 +803,43 @@ main section button[type="submit"]:hover {
     }
 
     .comentario p {
-        font-size: 0.9em; /* Tamaño de fuente más pequeño en dispositivos móviles */
+        font-size: 0.9em;
     }
 }
 @media (max-width: 480px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
 
+    .carousel-item img{
+        margin-left: 10%;
+        width: 80%;
+        height: 50%;
+        margin-top: 5%;
+        margin-bottom: 10%;
+    }
+
+    .news-container {
+        height: 350px;
+    }
+
+    .p-limited {
+        width: 200px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-left: 20%;
+    }
+
+    .event-item img{
+        max-width: 110%;
+    }
+
+    .news-card {
+        height: 350px;
+    }
+
+    .img-fluid {
+        width: 80%;
+    }
 }

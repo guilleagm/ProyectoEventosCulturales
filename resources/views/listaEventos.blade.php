@@ -15,7 +15,7 @@
     <h1>Eventos</h1>
 
     <form id="filter-form" action="{{ route('eventos.filtrar') }}" method="GET">
-        <label for="categoria">Filtrar por Categoría:</label>
+        <label for="categoria">Filtrar por Categoría:</label><br>
         <select name="categoria" id="categoria" class="btn btn-primary">
             <option value="">Todas las Categorías</option>
             <option value="concierto">Concierto</option>
