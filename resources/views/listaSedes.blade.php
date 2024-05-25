@@ -12,7 +12,7 @@
 <div class="container">
     @include('menu')
     <h1>Lista de Sedes</h1>
-    <table>
+    <table class="table">
         <thead>
         <tr>
             <th>Nombre</th>

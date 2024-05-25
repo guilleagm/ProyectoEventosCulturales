@@ -13,7 +13,6 @@
     @include('menu')
     <h1>Perfil de Usuario</h1>
     <div class="profile">
-        <!-- Display the profile image -->
         @if ($user->imagen)
             <img src="{{ asset('images/users/' . $user->imagen) }}" alt="Imagen de {{ $user->nombre_usuario }}" class="profile-image">
         @else
@@ -23,7 +22,6 @@
         <p><strong>Nombre de Usuario:</strong> {{ $user->nombre_usuario }}</p>
         <p><strong>Correo:</strong> {{ $user->correo }}</p>
 
-        <!-- Artist details, only shown if the profile belongs to an artist -->
         @if ($artista)
             <div class="artist-details">
                 <h2>Datos del Artista</h2>
@@ -31,7 +29,6 @@
                 <p><strong>Biografía:</strong> {{ $artista->biografia }}</p>
                 <p><strong>Género:</strong> {{ $artista->genero }}</p>
             </div>
-            <!-- Add/remove favorite artist -->
             @if (auth()->check() && auth()->user()->id != $user->id)
                 @if (auth()->user()->artistasFavoritos()->where('id_artista', $artista->id)->exists())
                     <form action="{{ route('usuarios.artistas.eliminar_favorito', ['usuario' => auth()->user(), 'artista' => $artista]) }}" method="POST">
@@ -48,7 +45,6 @@
             @endif
         @endif
 
-        <!-- Button to register as artist, shown only if the logged-in user is viewing their own profile and they are not an artist -->
         @if ($puedeRegistrarArtista)
             <a href="{{ route('registro.artista') }}" class="btn btn-primary">Registrarse como artista</a><br>
         @endif
@@ -56,10 +52,8 @@
             <a href="{{ route('programarEvento') }}">Programar Evento</a><br>
         @endif
 
-        <!-- Edit profile link -->
         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Editar Perfil</a>
 
-        <!-- Admin options to delete another user -->
         @if (auth()->check() && auth()->user()->esAdmin && auth()->user()->id != $user->id)
             <form action="{{ route('users.eliminarUsuario', $user->id) }}" method="POST">
                 @csrf
@@ -68,7 +62,6 @@
             </form>
         @endif
 
-        <!-- User options to delete own account -->
         @if (auth()->check() && auth()->user()->id == $user->id)
             <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                 @csrf

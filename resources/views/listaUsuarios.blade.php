@@ -13,7 +13,6 @@
     @include('menu')
 @auth
     @if (Auth::user()->esAdmin)
-    <div class="container">
         <h1>Lista de Usuarios</h1>
         <table class="table">
             <thead>
@@ -56,7 +55,6 @@
             @endforeach
             </tbody>
         </table>
-    </div>
     @endif
 @endauth
 </div>

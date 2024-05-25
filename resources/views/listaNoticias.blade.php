@@ -18,10 +18,21 @@
                 <img src="{{ asset('images/' . $noticia->imagen) }}" alt="{{ $noticia->titulo }}">
                 <div class="news-info">
                     <h2><a href="{{ route('noticias.show', $noticia->id) }}">{{ $noticia->titulo }}</a></h2>
-                    <p>Artista ID: {{ $noticia->id_artista }}</p>
+                    @if($noticia->artista && $noticia->artista->usuario)
+                        Sobre:
+                        <a href="{{ route('users.profile', ['id' => $noticia->artista->usuario->id]) }}">
+                            {{ $noticia->artista->usuario->nombre_usuario }}
+                        </a>
+                    @else
+                        <p>Nombre de usuario no disponible</p>
+                    @endif
                 </div>
             </div>
         @endforeach
+    </div>
+    <br>
+    <div id="paginador">
+        {{ $noticias->links() }}
     </div>
 </div>
 @include('pie')

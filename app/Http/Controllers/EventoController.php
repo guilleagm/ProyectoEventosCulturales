@@ -56,7 +56,7 @@ class EventoController extends Controller
 
     public function listarEventos()
     {
-        $eventos = Evento::all();
+        $eventos = Evento::with('sede')->get();
         return view('listaEventos', ['eventos' => $eventos]);
     }
 

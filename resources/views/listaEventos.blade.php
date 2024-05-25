@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
     <script src="/js/filtradoEventos.js" ></script>
     <script src="/js/menuFotoPerfil.js"></script>
+    <script src="/js/limpiarFiltros.js"></script>
 </head>
 <div class="container">
     @include('menu')
     <h1>Eventos</h1>
 
-    <form action="{{ route('eventos.filtrar') }}" method="GET">
+    <form id="filter-form" action="{{ route('eventos.filtrar') }}" method="GET">
         <label for="categoria">Filtrar por Categoría:</label>
         <select name="categoria" id="categoria" class="btn btn-primary">
             <option value="">Todas las Categorías</option>
@@ -22,6 +23,7 @@
             <option value="recital de poesía">Recital de Poesía</option>
         </select>
         <button type="submit" class="btn btn-primary">Filtrar</button>
+        <button type="button" id="clear-filters" class="btn btn-primary">Limpiar Filtros</button>
     </form>
 
     <div class="view-options">
@@ -34,12 +36,11 @@
         @foreach ($eventos as $evento)
             <div class="event-item">
                 <img src="{{ asset('images/' . $evento->imagen) }}" alt="{{ $evento->titulo }}">
-                <div><a href="{{ route('eventos.ver', $evento->id) }}">{{ $evento->titulo }}</a></div>
-                <div>{{ $evento->fecha }}</div>
-                <div>{{ $evento->id_sede }}</div>
-                <div>{{ $evento->estado }}</div>
-                <div>{{ $evento->num_entradas_disponibles }}</div>
+                <h2><a href="{{ route('eventos.ver', $evento->id) }}">{{ $evento->titulo }}</a></h2>
                 <div>{{ $evento->categoria }}</div>
+                <div>{{ \Carbon\Carbon::parse($evento->fecha)->format('d/m/Y') }} - {{ \Carbon\Carbon::createFromFormat('H:i:s', $evento->hora)->format('H:i') }}</div>
+                <div>📍{{ $evento->sede->nombre }}</div>
+                <div>Entradas disponibles: {{ $evento->num_entradas_disponibles }}</div>
             </div>
         @endforeach
     </div>

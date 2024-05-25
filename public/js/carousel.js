@@ -29,9 +29,7 @@ $(document).ready(function() {
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 1,
-                    vertical: false,
-                    verticalSwiping: false
+                    slidesToShow: 1
                 }
             }
         ]

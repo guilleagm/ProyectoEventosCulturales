@@ -15,4 +15,8 @@ class Artista extends Model
         'genero',
         'id_usuario',
     ];
+    public function usuario() {
+        // Asume que cada artista tiene un usuario asociado
+        return $this->belongsTo(User::class, 'id_usuario');
+    }
 }

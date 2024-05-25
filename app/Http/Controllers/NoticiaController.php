@@ -47,7 +47,7 @@ class NoticiaController extends Controller
 
     public function listarNoticias()
     {
-        $noticias = Noticia::all();
+        $noticias = Noticia::simplePaginate(6);
         return view('listaNoticias', compact('noticias'));
     }
 
@@ -100,5 +100,11 @@ class NoticiaController extends Controller
         $noticia->delete();
 
         return redirect()->route('noticias.index')->with('success', 'Noticia eliminada correctamente.');
+    }
+
+    public function index() {
+        // Carga las noticias incluyendo los datos del artista y del usuario
+        $noticias = Noticia::with('artista.usuario')->get();
+        return view('noticias.index', compact('noticias'));
     }
 }

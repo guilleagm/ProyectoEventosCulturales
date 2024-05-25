@@ -11,18 +11,21 @@
 <body>
 <div class="container">
     @include('menu')
-    <h1>Resultados de la Búsqueda para "{{ $busqueda }}"</h1>
+    <h1>Resultados para la Búsqueda de "{{ $busqueda }}"</h1>
     @if ($eventos->isEmpty())
         <p>No se encontraron eventos para el usuario "{{ $busqueda }}".</p>
     @else
-        <ul>
-            @foreach ($eventos as $evento)
-                <li>
-                    <a href="{{ route('eventos.ver', $evento->id) }}">{{ $evento->titulo }}</a>
-                    - {{ $evento->fecha }}
-                </li>
-            @endforeach
-        </ul>
+        <div class="resultado">
+            <ul>
+                @foreach ($eventos as $evento)
+                    <li>
+                        <img src="{{ asset('images/' . $evento->imagen) }}" alt="{{ $evento->titulo }}">
+                        <h3><a href="{{ route('eventos.ver', $evento->id) }}">{{ $evento->titulo }}</a></h3>
+                        - {{ $evento->fecha }}
+                    </li>
+                @endforeach
+            </ul>
+        </div>
     @endif
 </div>
 @include('pie')

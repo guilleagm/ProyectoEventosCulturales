@@ -30,7 +30,8 @@
                         <div class="carousel-item">
                             <img src="{{ asset('images/' . $evento->imagen) }}" alt="{{ $evento->titulo }}">
                             <h3>{{ $evento->titulo }}</h3>
-                            <p>{{ $evento->categoria }} - {{ \Carbon\Carbon::parse($evento->fecha)->format('d/m/Y') }}</p>
+                            <p>{{ $evento->categoria }}</p>
+                            <p>{{ \Carbon\Carbon::parse($evento->fecha)->format('d/m/Y') }} - {{ \Carbon\Carbon::createFromFormat('H:i:s', $evento->hora)->format('H:i') }}</p>
                             <a href="{{ route('eventos.ver', ['id' => $evento->id]) }}">Más información</a>
                         </div>
                     @endforeach
@@ -47,7 +48,7 @@
                             <img src="{{ asset('images/' . $noticia->imagen) }}" alt="{{ $noticia->titulo }}" class="news-image">
                             <div class="news-content">
                                 <h3>{{ $noticia->titulo }}</h3>
-                                <p>{{ $noticia->texto }}</p>
+                                <p>{{ Str::limit($noticia->texto, 70, '...') }}</p>
                                 <a href="{{ route('noticias.show', ['id' => $noticia->id]) }}">Leer más</a>
                             </div>
                         </div>
