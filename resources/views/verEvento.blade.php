@@ -7,13 +7,13 @@
     <title>CulturaVibe</title>
     <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
     <script src="/js/menuFotoPerfil.js"></script>
+    <script src="/js/comentarios.js"></script>
 </head>
 <body>
 <div class="container">
     @include('menu')
     <h1>{{ $evento->titulo }}</h1>
 
-    <!-- Display the event's image -->
     @if ($evento->imagen)
         <img src="{{ asset('images/' . $evento->imagen) }}" alt="Imagen del Evento" class="img-fluid">
     @else
@@ -38,16 +38,19 @@
 
 <div class="container">
     <h2>Comentarios</h2>
-    @forelse ($comentarios as $comentario)
-        <div class="comentario">
-            <p><strong>Comentado por:</strong> {{ $comentario->usuario->nombre_usuario }}</p>
-            <p><strong>Contenido:</strong> {{ $comentario->contenido }}</p>
-            <p><strong>Valoración:</strong> {{ $comentario->valoracion }} estrellas</p>
-            <p><strong>Fecha del comentario:</strong> {{ $comentario->created_at }}</p>
-        </div>
-    @empty
-        <p>No hay comentarios para este evento.</p>
-    @endforelse
+    <div id="comentarios-container">
+        @foreach ($comentarios as $index => $comentario)
+            <div class="comentario{{ $index >= 2 ? ' oculto' : '' }}">
+                <p><strong>Comentado por:</strong> <a href="{{ route('users.profile', $comentario->usuario->id) }}">{{ $comentario->usuario->nombre_usuario }}</a></p>
+                <p><strong>Contenido:</strong> {{ $comentario->contenido }}</p>
+                <p><strong>Valoración:</strong> {{ $comentario->valoracion }} estrellas</p>
+                <p><strong>Fecha del comentario:</strong> {{ $comentario->created_at }}</p>
+            </div>
+        @endforeach
+    </div>
+    @if(count($comentarios) > 2)
+        <button id="show-more-comments" class="btn btn-primary">Mostrar más comentarios</button>
+    @endif
 </div>
 
 <div class="container">

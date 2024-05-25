@@ -43,5 +43,8 @@
         @endif
         <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
     </form>
+    <form>
+        <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+    </form>
 </div>
 @include('pie')

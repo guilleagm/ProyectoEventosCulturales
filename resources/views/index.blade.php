@@ -19,7 +19,7 @@
     <main>
         @guest
             <section>
-                <p>Bienvenido, visitante! Considera <a href="{{ route('login') }}">iniciar sesión</a> o <a href="{{ route('register') }}">registrarte</a> para una mejor experiencia.</p>
+                <p>Bienvenido! Considera <a href="{{ route('login') }}">iniciar sesión</a> o <a href="{{ route('register') }}">registrarte</a> para tener una experiencia completa.</p>
             </section>
         @endguest
         <section class="carousel-section">
@@ -48,7 +48,7 @@
                             <img src="{{ asset('images/' . $noticia->imagen) }}" alt="{{ $noticia->titulo }}" class="news-image">
                             <div class="news-content">
                                 <h3>{{ $noticia->titulo }}</h3>
-                                <p>{{ Str::limit($noticia->texto, 70, '...') }}</p>
+                                <p class="p-limited">{{ $noticia->texto }}</p>
                                 <a href="{{ route('noticias.show', ['id' => $noticia->id]) }}">Leer más</a>
                             </div>
                         </div>
