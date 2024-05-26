@@ -17,7 +17,6 @@
         <table class="table">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Nombre</th>
                 <th>Email</th>
             </tr>
@@ -25,13 +24,10 @@
             <tbody>
             @foreach($users as $user)
                 <tr>
-                    <td>{{ $user->id }}</td>
                     <td><a href="{{ route('users.profile', $user->id) }}">
                             {{ $user->nombre_usuario }}
                         </a></td>
                     <td>{{ $user->correo }}</td>
-                    <td>
-                    </td>
                 </tr>
             @endforeach
             </tbody>
@@ -41,7 +37,6 @@
             <thead>
             <tr>
                 <th>Nombre Artístico</th>
-                <th>Biografia</th>
                 <th>Género</th>
             </tr>
             </thead>
@@ -49,7 +44,6 @@
             @foreach ($artistas as $artista)
                 <tr>
                     <td><a href="{{ route('users.profile', $artista->id_usuario) }}">{{ $artista->nombre }}</a></td>
-                    <td>{{ $artista->biografia }}</td>
                     <td>{{ $artista->genero }}</td>
                 </tr>
             @endforeach

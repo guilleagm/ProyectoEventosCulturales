@@ -4,6 +4,7 @@
         <div class="nav-logo">
             <h1><a href="{{ route('home') }}">CulturaVibe</a></h1>
         </div>
+        <button class="hamburger">&#9776;</button>
         <ul class="nav-items">
             <li><a href="{{ route('home') }}">Inicio</a></li>
             <li><a href="{{ route('eventos.listar') }}">Eventos</a></li>
@@ -14,6 +15,8 @@
                     <button type="submit" aria-label="Buscar artista">&#128269;</button>
                 </form>
             </li>
+        </ul>
+        <ul>
             @auth
                 <li class="profile-menu">
                     <img src="{{ asset('images/users/' . auth()->user()->imagen) }}" alt="Imagen de {{ auth()->user()->nombre_usuario }}" class="profile-image">
