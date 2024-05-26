@@ -13,10 +13,10 @@
     @include('menu')
     <h1>{{ $noticia->titulo }}</h1>
     <img src="{{ asset('/images/' . $noticia->imagen) }}" alt="Imagen de {{ $noticia->titulo }}" id="imagenNoticia">
-    <p><strong>Texto de la Noticia:</strong> {{ $noticia->texto }}</p>
     <p><strong>Artista:</strong> <a class="subra" href="{{ route('users.profile', ['id' => $noticia->artista->usuario->id]) }}">
             {{ $noticia->artista->usuario->nombre_usuario }}
         </a></p>
+    <p>{{ $noticia->texto }}</p>
 </div>
 @auth
     @if (auth()->user()->esAdmin)

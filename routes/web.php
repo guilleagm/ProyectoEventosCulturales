@@ -71,6 +71,7 @@ Route::put('/eventos/actualizar/{id}', [EventoController::class, 'actualizar'])-
 Route::get('/eventos/buscar', [EventoController::class, 'buscar'])->name('eventos.buscar');
 Route::get('/eventos/filtrar', [EventoController::class, 'filtrar'])->name('eventos.filtrar');
 
+
 //Rutas comentarios
 Route::post('/eventos/{eventoId}/comentarios', [EventoController::class, 'guardarComentario'])->name('eventos.guardar_comentario');
 

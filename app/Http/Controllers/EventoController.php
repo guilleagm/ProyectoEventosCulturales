@@ -9,6 +9,7 @@ use App\Models\Noticia;
 use App\Models\Sede;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 
@@ -20,7 +21,6 @@ class EventoController extends Controller
         return view('formularioNuevoEvento', compact('sedes'));
     }
 
-    // Método para almacenar un nuevo evento en la base de datos
     public function nuevoEvento(Request $request)
     {
         $request->validate([
@@ -82,7 +82,6 @@ class EventoController extends Controller
 
     public function actualizar(Request $request, $id)
     {
-        // Validate other event attributes
         $request->validate([
             'titulo' => 'required|string|max:255',
             'fecha' => 'required|date',
@@ -90,29 +89,23 @@ class EventoController extends Controller
             'num_entradas_disponibles' => 'required|integer|min:1',
             'estado' => 'required|string|max:255',
             'id_sede' => 'required|integer',
-            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048' // Optional image validation
+            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        // Find the event record
         $evento = Evento::findOrFail($id);
 
-        // Check for a new image file
         if ($request->hasFile('imagen')) {
-            // Delete the old image if it exists
             if ($evento->imagen && file_exists(public_path('images/' . $evento->imagen))) {
                 unlink(public_path('images/' . $evento->imagen));
             }
 
-            // Store the new image
             $imageFile = $request->file('imagen');
             $imageName = time() . '.' . $imageFile->getClientOriginalExtension();
             $imageFile->move(public_path('images'), $imageName);
 
-            // Update the event's image field
             $evento->imagen = $imageName;
         }
 
-        // Update other attributes
         $evento->update([
             'titulo' => $request->titulo,
             'fecha' => $request->fecha,
@@ -122,7 +115,6 @@ class EventoController extends Controller
             'id_sede' => $request->id_sede
         ]);
 
-        // Save the image field separately (if modified)
         $evento->save();
 
         return redirect()->route('eventos.listar')->with('success', 'Evento actualizado exitosamente');
@@ -197,5 +189,4 @@ class EventoController extends Controller
 
         return back()->with('success', 'Evento cancelado y correos enviados.');
     }
-
 }

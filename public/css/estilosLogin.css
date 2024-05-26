@@ -194,8 +194,6 @@ body {
     }
 }
 
-
-
 @media (max-width: 480px) {
     .login-wrapper {
         flex-direction: column;

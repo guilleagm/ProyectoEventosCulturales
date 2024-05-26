@@ -33,7 +33,7 @@ class Evento extends Model
     {
         return $this->belongsTo(User::class, 'id_usuario');
     }
-    public function attendees()
+    public function asistentes()
     {
         return $this->hasManyThrough(
             User::class,
