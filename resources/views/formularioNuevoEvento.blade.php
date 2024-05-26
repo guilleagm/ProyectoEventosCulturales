@@ -24,12 +24,16 @@
             <input type="date" name="fecha" class="input-form" required>
         </div>
         <div class="grupo-form">
-            <label for="categoria">Categoría:</label><br>
-            <input type="text" name="categoria" class="input-form" required>
+            <label for="hora">Hora del Evento:</label><br>
+            <input type="time" name="hora" class="input-form" required>
         </div>
         <div class="grupo-form">
-            <label for="num_entradas_disponibles">Número de Entradas Disponibles:</label><br>
-            <input type="number" name="num_entradas_disponibles" class="input-form" required>
+            <label for="categoria">Categoría:</label><br>
+            <select name="categoria" class="input-form" required>
+                <option value="Concierto">Concierto</option>
+                <option value="Teatro">Teatro</option>
+                <option value="Recital de Poesía">Recital de Poesía</option>
+            </select>
         </div>
         <div class="grupo-form">
             <label for="estado">Estado:</label><br>
@@ -40,8 +44,12 @@
             </select>
         </div>
         <div class="grupo-form">
-            <label for="id_sede">ID de la Sede:</label>
-            <input type="number" name="id_sede" class="input-form" required>
+            <label for="id_sede">Sede:</label><br>
+            <select name="id_sede" class="input-form" required>
+                @foreach($sedes as $sede)
+                    <option value="{{ $sede->id }}">{{ $sede->nombre }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="grupo-form">
             <label for="imagen">Imagen del Evento:</label>

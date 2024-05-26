@@ -28,13 +28,15 @@
             <div class="event-carousel">
                 @if (isset($eventos))
                     @foreach ($eventos as $evento)
+                        @if ($evento->estado === 'En preparación')
                         <div class="carousel-item">
                             <img src="{{ asset('images/' . $evento->imagen) }}" alt="{{ $evento->titulo }}">
                             <h3>{{ $evento->titulo }}</h3>
                             <p>{{ $evento->categoria }}</p>
-                            <p>{{ \Carbon\Carbon::parse($evento->fecha)->format('d/m/Y') }} - {{ \Carbon\Carbon::createFromFormat('H:i:s', $evento->hora)->format('H:i') }}</p>
+                            <p>{{ \Carbon\Carbon::parse($evento->fecha)->format('d/m/Y') }} - {{ $evento->hora}}</p>
                             <a href="{{ route('eventos.ver', ['id' => $evento->id]) }}">Más información</a>
                         </div>
+                        @endif
                     @endforeach
                 @else
                     <p>No hay eventos disponibles.</p>

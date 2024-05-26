@@ -5,6 +5,7 @@ use App\Models\Artista;
 use App\Models\Comentario;
 use App\Models\Evento;
 use App\Models\Noticia;
+use App\Models\Sede;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
@@ -13,39 +14,43 @@ class EventoController extends Controller
 {
     public function mostrarFormularioEvento()
     {
-        return view('formularioNuevoEvento');
+        $sedes = Sede::all();
+        return view('formularioNuevoEvento', compact('sedes'));
     }
 
     // Método para almacenar un nuevo evento en la base de datos
     public function nuevoEvento(Request $request)
     {
-        // Validate the form data including image
         $request->validate([
             'titulo' => 'required|string|max:255',
             'fecha' => 'required|date',
+            'hora' => 'required|string',
             'categoria' => 'required|string|max:255',
-            'num_entradas_disponibles' => 'required|integer|min:1',
             'estado' => 'required|string|max:255',
             'id_sede' => 'required|integer',
-            'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048' // Max file size set to 2MB for example
+            'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048'
         ]);
 
-        // Check if the image file is present in the request
+        $sede = Sede::find($request->id_sede);
+        if (!$sede) {
+            return back()->with('error', 'Sede no encontrada. Asegúrese de que el ID de la sede es correcto.');
+        }
+
         if ($request->hasFile('imagen')) {
             $imageFile = $request->file('imagen');
             $imageName = time() . '.' . $imageFile->getClientOriginalExtension();
             $imageFile->move(public_path('images'), $imageName);
 
-            // Create the new event including the id_usuario field from the authenticated user
             Evento::create([
                 'titulo' => $request->titulo,
                 'fecha' => $request->fecha,
+                'hora' => $request->hora,
                 'categoria' => $request->categoria,
-                'num_entradas_disponibles' => $request->num_entradas_disponibles,
+                'num_entradas_disponibles' => $sede->capacidad,
                 'estado' => $request->estado,
                 'id_sede' => $request->id_sede,
                 'imagen' => $imageName,
-                'id_usuario' => auth()->id() // Fetch the currently authenticated user's ID
+                'id_usuario' => auth()->id()
             ]);
 
             return redirect('/')->with('success', 'Evento programado exitosamente');
@@ -56,7 +61,7 @@ class EventoController extends Controller
 
     public function listarEventos()
     {
-        $eventos = Evento::with('sede')->get();
+        $eventos = Evento::with('sede')->simplePaginate(8);
         return view('listaEventos', ['eventos' => $eventos]);
     }
 

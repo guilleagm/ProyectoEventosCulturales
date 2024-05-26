@@ -38,11 +38,14 @@
                 <img src="{{ asset('images/' . $evento->imagen) }}" alt="{{ $evento->titulo }}">
                 <h2><a href="{{ route('eventos.ver', $evento->id) }}">{{ $evento->titulo }}</a></h2>
                 <div>{{ $evento->categoria }}</div>
-                <div>{{ \Carbon\Carbon::parse($evento->fecha)->format('d/m/Y') }} - {{ \Carbon\Carbon::createFromFormat('H:i:s', $evento->hora)->format('H:i') }}</div>
+                <div>{{ \Carbon\Carbon::parse($evento->fecha)->format('d/m/Y') }} - {{ $evento->hora}}</div>
                 <div>📍{{ $evento->sede->nombre }}</div>
                 <div>Entradas disponibles: {{ $evento->num_entradas_disponibles }}</div>
             </div>
         @endforeach
+    </div>
+    <div id="paginador">
+        {{ $eventos->links() }}
     </div>
 </div>
 @include('pie')
