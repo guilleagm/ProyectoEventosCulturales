@@ -43,7 +43,7 @@
         @endif
         <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
     </form>
-    <form>
+    <form action="{{ route('user.form-cambiar-contraseña') }}" method="GET">
         <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
     </form>
 </div>

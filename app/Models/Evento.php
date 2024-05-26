@@ -33,4 +33,15 @@ class Evento extends Model
     {
         return $this->belongsTo(User::class, 'id_usuario');
     }
+    public function attendees()
+    {
+        return $this->hasManyThrough(
+            User::class,
+            AsignacionEntrada::class,
+            'id_evento',
+            'id',
+            'id',
+            'id_usuario'
+        );
+    }
 }

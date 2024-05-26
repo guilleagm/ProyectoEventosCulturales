@@ -16,7 +16,7 @@
         @csrf
         <div class="grupo-form">
             <label for="num_entradas_asignadas">Cantidad de Entradas:</label>
-            <input type="number" class="input-form" id="num_entradas_asignadas" name="num_entradas_asignadas" required>
+            <input type="number" class="input-form" id="num_entradas_asignadas" name="num_entradas_asignadas" min="1" max="5" required>
         </div>
         <button type="submit" class="btn btn-primary">Comprar Entradas</button>
     </form>

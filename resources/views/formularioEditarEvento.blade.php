@@ -26,13 +26,17 @@
         </div>
         <br>
         <div class="grupo-form">
-        <label for="categoria">Categoría:</label><br>
-        <input type="text" class="input-form" name="categoria" value="{{ $evento->categoria }}" required>
+            <label for="hora">Hora del Evento:</label><br>
+            <input type="time" name="hora" class="input-form" required>
         </div>
         <br>
         <div class="grupo-form">
-        <label for="num_entradas_disponibles">Número de Entradas Disponibles:</label><br>
-        <input type="number" class="input-form" name="num_entradas_disponibles" value="{{ $evento->num_entradas_disponibles }}" class="form-control" required>
+            <label for="categoria">Categoría:</label><br>
+            <select name="categoria" class="input-form" required>
+                <option value="Concierto">Concierto</option>
+                <option value="Teatro">Teatro</option>
+                <option value="Recital de Poesía">Recital de Poesía</option>
+            </select>
         </div>
         <br>
         <div class="grupo-form">
@@ -42,11 +46,6 @@
             <option value="Cancelado" {{ $evento->estado == 'Cancelado' ? 'selected' : '' }}>Cancelado</option>
             <option value="Terminado" {{ $evento->estado == 'Terminado' ? 'selected' : '' }}>Terminado</option>
         </select>
-        </div>
-        <br>
-        <div class="grupo-form">
-        <label for="id_sede">ID Sede:</label><br>
-        <input type="number" class="input-form" name="id_sede" value="{{ $evento->id_sede }}" required>
         </div>
         <br>
         <div class="grupo-form">

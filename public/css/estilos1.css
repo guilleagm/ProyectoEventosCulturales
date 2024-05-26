@@ -411,6 +411,11 @@ main section button[type="submit"]:hover {
     text-decoration: underline;
 }
 
+.subra {
+    color: #6dc0b4;
+    text-decoration: none;
+}
+
 .profile {
     display: flex;
     flex-direction: column;

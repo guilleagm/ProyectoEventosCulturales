@@ -19,6 +19,6 @@
         <p><strong>Accesibilidad:</strong> {{ $sede->accesibilidad ? 'Sí' : 'No' }}</p>
     </div>
     <a href="{{ route('sedes.listaSedes') }}" class="btn btn-primary">Volver a la lista de Sedes</a>
-    <a href="{{ route('sedes.editar', $sede->id) }}" class="btn btn-warning">Editar Sede</a>
+    <a href="{{ route('sedes.editar', $sede->id) }}" class="btn btn-primary">Editar Sede</a>
 </div>
 @include('pie')

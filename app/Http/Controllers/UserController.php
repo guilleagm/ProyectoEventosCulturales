@@ -6,6 +6,7 @@ use App\Models\Artista;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -130,17 +131,34 @@ class UserController extends Controller
 
             return redirect()->route('/')->with('success', 'Tu cuenta ha sido eliminada correctamente.');
         } else {
-            // Si el usuario autenticado no es el mismo que se está intentando eliminar, mostrar un mensaje de error
             abort(403, 'No tienes permiso para eliminar este usuario.');
         }
     }
 
-    /*public function comprobarArtista($id){
-        // Verifica si el usuario autenticado es artista
-        $esArtista = false;
-        if (Auth::check()) {
-            $esArtista = Artista::where('id_usuario', Auth::id())->exists();
+    public function cambiarContraseña(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->getAuthPassword())) {
+            return back()->withErrors(['current_password' => 'La contraseña actual no es correcta.']);
         }
-        return view('perfilUsuario',['esArtista' => $esArtista]);
-    }*/
+
+        $user->update([
+            'contraseña' => Hash::make($request->new_password),
+        ]);
+
+        Auth::logout();
+
+        return redirect()->route('login')->with('success', 'Contraseña actualizada correctamente.');
+    }
+
+    public function mostrarFormCambioContraseña()
+    {
+        return view('formularioCambiarContraseña');
+    }
 }

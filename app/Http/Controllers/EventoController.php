@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Mail\CancelarEvento;
 use App\Models\Artista;
 use App\Models\Comentario;
 use App\Models\Evento;
@@ -9,6 +10,7 @@ use App\Models\Sede;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
 
 class EventoController extends Controller
 {
@@ -174,4 +176,26 @@ class EventoController extends Controller
         $noticias = Noticia::all();
         return view('index', ['eventos' => $eventos, 'noticias' => $noticias]);
     }
+
+    public function cancelEvent(Evento $evento)
+    {
+        if (!auth()->check() || (auth()->user()->id !== $evento->id_usuario && !auth()->user()->esAdmin)) {
+            abort(403, 'No autorizado para cancelar este evento.');
+        }
+
+        $evento->update(['estado' => 'Cancelado']);
+
+        $attendees = $evento->attendees;
+
+        if ($attendees->count() > 0) {
+            foreach ($attendees as $user) {
+                if (filter_var($user->correo, FILTER_VALIDATE_EMAIL)) {
+                    Mail::to($user->correo)->send(new CancelarEvento($evento));
+                }
+            }
+        }
+
+        return back()->with('success', 'Evento cancelado y correos enviados.');
+    }
+
 }

@@ -47,9 +47,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::delete('/admin/users/{user}', [UserController::class, 'eliminarUsuario'])->name('users.eliminarUsuario');
+    Route::delete('/usuarios/{usuario}/artistas/{artista}/eliminar_favorito', [App\Http\Controllers\UserArtistaFavController::class, 'eliminarFavorito'])->name('usuarios.artistas.eliminar_favorito');
 });
-Route::delete('/admin/users/{user}', [UserController::class, 'eliminarUsuario'])->name('users.eliminarUsuario');
-Route::delete('/usuarios/{usuario}/artistas/{artista}/eliminar_favorito', [App\Http\Controllers\UserArtistaFavController::class, 'eliminarFavorito'])->name('usuarios.artistas.eliminar_favorito');
+Route::get('/cambiar-contraseña', [UserController::class, 'mostrarFormCambioContraseña'])->name('user.form-cambiar-contraseña')->middleware('auth');
+Route::post('/user/update-password', [UserController::class, 'cambiarContraseña'])->name('user.cambiar-contraseña')->middleware('auth');
 Route::get('panelAdmin', function (){
     return view('panelAdmin');
 })->name('panelAdmin');
@@ -84,3 +86,6 @@ Route::get('/eventos/{evento}/comprar', [AsignacionEntradasController::class, 'm
 Route::post('/eventos/{evento}/comprar', [AsignacionEntradasController::class, 'comprarEntradas'])->name('entradas.comprar');
 Route::get('/eventos/{idEvento}/confirmar-cancelacion', [AsignacionEntradasController::class, 'mostrarConfirmacionCancelacion'])->name('entradas.confirmar_cancelacion');
 Route::delete('/eventos/{idEvento}/cancelar', [AsignacionEntradasController::class, 'cancelarCompra'])->name('entradas.cancelar');
+
+//Rutas correos
+Route::post('/eventos/{evento}/cancel', [EventoController::class, 'cancelEvent'])->name('eventos.cancel');

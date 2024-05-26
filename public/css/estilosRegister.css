@@ -1,4 +1,3 @@
-/* General body styles */
 body {
     margin: 0;
     height: 100vh;
@@ -20,13 +19,11 @@ body {
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-/* Enlarge the register box when hovered */
 .register-wrapper:hover {
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
 }
 
-/* Branding section */
 .branding-section {
     flex: 1;
     background: linear-gradient(135deg, #6dc0b4, #8b92d8);
@@ -62,7 +59,6 @@ body {
     text-decoration: underline;
 }
 
-/* Form section */
 .form-section {
     flex: 1;
     background: #ffffff;
@@ -99,9 +95,8 @@ body {
     transition: background-color 0.2s ease-in-out;
 }
 
-/* Highlight the input fields on hover */
 .input-field:hover, .input-file:hover {
-    background-color: #f0f0f0; /* Light gray */
+    background-color: #f0f0f0;
 }
 
 .register-button {
@@ -135,5 +130,100 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .register-wrapper {
+        flex-direction: column;
+        width: 80%;
+        height: auto;
+        margin-top: 15%;
+    }
+
+    #login img {
+        width: 30%;
+    }
+
+    .branding-section,
+    .form-section {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .form-section {
+        order: 2;
+    }
+
+    .branding-section {
+        order: 1;
+    }
+
+    #login {
+        font-size: 1.5em;
+    }
+
+    .form-section h1 {
+        font-size: 1.5em;
+    }
+
+    .input-field,
+    .input-file {
+        font-size: 0.9em;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+        width: 85%;
+    }
+
+    .register-button {
+        padding: 10px;
+        width: 85%;
+        margin-left: 3%;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-wrapper {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        margin-top: 25%;
+    }
+
+    .branding-section,
+    .form-section {
+        flex: none;
+        width: 100%;
+        padding: 20px;
+    }
+
+    #login {
+        font-size: 1.5em;
+    }
+
+    .form-section h1 {
+        font-size: 1.5em;
+    }
+
+    .input-field,
+    .input-file {
+        font-size: 0.9em;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+        width: 85%;
+    }
+
+    .register-button {
+        padding: 10px;
+        width: 85%;
+        margin-left: 2%;
+    }
+
+    .register-wrapper:hover {
+        transform: none;
     }
 }

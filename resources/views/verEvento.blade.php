@@ -26,7 +26,13 @@
     <p><strong>Estado:</strong> {{ $evento->estado }}</p>
     <p><strong>Número de Entradas Disponibles:</strong> {{ $evento->num_entradas_disponibles }}</p>
     <p><strong>Categoría:</strong> {{ $evento->categoria }}</p>
-
+    @if(auth()->check() && (auth()->user()->esAdmin || auth()->id() == $evento->id_usuario))
+        <form method="POST" action="{{ route('eventos.cancel', $evento->id) }}" onsubmit="return confirm('¿Estás seguro de que quieres cancelar este evento?');">
+            @csrf
+            <button type="submit" class="btn btn-danger">Cancelar Evento</button>
+        </form>
+    @endif
+    <br>
     <a href="{{ route('eventos.editar', $evento->id) }}" class="btn btn-primary">Editar Evento</a>
     @if(!$usuarioHaComprado)
         <a href="{{ route('entradas.mostrar_compra', $evento->id) }}" class="btn btn-primary">Comprar Entradas</a>

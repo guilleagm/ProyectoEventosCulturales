@@ -28,12 +28,12 @@
             <input type="file" name="imagen" class="input-form">
         </div>
         <div class="grupo-form">
-            <label for="id_artista">ID del Artista:</label><br>
-            <input type="number" name="id_artista" id="id_artista" class="input-form" value="{{ old('id_artista', $noticia->id_artista) }}" required>
-        </div>
-        <div class="grupo-form">
-            <label for="id_usuario">ID del Usuario:</label><br>
-            <input type="number" name="id_usuario" id="id_usuario" class="input-form" value="{{ old('id_usuario', $noticia->id_usuario) }}" required>
+            <label for="id_artista">Artista:</label><br>
+            <select name="id_artista" class="input-form" required>
+                @foreach(App\Models\Artista::all() as $artista)
+                    <option value="{{ $artista->id }}">{{ $artista->nombre }}</option>
+                @endforeach
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Actualizar Noticia</button>
     </form>

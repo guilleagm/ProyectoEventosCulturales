@@ -1,4 +1,3 @@
-/* General body styles */
 body {
     margin: 0;
     height: 100vh;
@@ -20,13 +19,11 @@ body {
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-/* Enlarge the login box when hovered */
 .login-wrapper:hover {
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
 }
 
-/* Branding section */
 .branding-section {
     flex: 1;
     background: linear-gradient(135deg, #6dc0b4, #8b92d8);
@@ -99,7 +96,6 @@ body {
     transition: background-color 0.2s ease-in-out;
 }
 
-/* Highlight the input fields on hover */
 .input-field:hover {
     background-color: #f0f0f0;
 }
@@ -159,5 +155,97 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .login-wrapper {
+        flex-direction: column;
+        width: 85%;
+        height: auto;
+    }
+
+    .branding-section,
+    .form-section {
+        width: 100%;
+        padding: 20px;
+    }
+
+    #login img {
+        width: 30%;
+    }
+
+    .form-section h1 {
+        font-size: 1.75em;
+    }
+
+    .login-wrapper:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        transform: none;
+    }
+
+    .input-field {
+        width: 90%;
+    }
+
+    .login-button {
+        width: 85%;
+        margin-left: 4%;
+    }
+}
+
+
+
+@media (max-width: 480px) {
+    .login-wrapper {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+    }
+
+    .branding-section,
+    .form-section {
+        flex: none;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .brand-logo,
+    #login {
+        font-size: 1.5em;
+    }
+
+    .form-section h1 {
+        font-size: 1.5em;
+    }
+
+    .input-field,
+    .login-button {
+        font-size: 1em;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .login-button {
+        padding: 10px;
+    }
+
+    .about-links a {
+        font-size: 0.8em;
+    }
+
+    .input-field {
+        width: 85%;
+    }
+
+    .login-button {
+        width: 85%;
+        margin-left: 2%;
+    }
+
+    .login-wrapper:hover {
+        transform: none;
     }
 }

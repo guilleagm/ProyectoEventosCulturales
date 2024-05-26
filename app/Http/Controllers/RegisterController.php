@@ -21,10 +21,9 @@ class RegisterController extends Controller
             'nombre_usuario' => ['required', 'string', 'max:255'],
             'correo' => ['required', 'string', 'email', 'max:255', 'unique:users,correo'],
             'contraseña' => ['required', 'min:6'],
-            'imagen' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'] // Add image validation
+            'imagen' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048']
         ]);
 
-        // Check if an image file is present
         $imageName = null;
         if ($request->hasFile('imagen')) {
             $imageFile = $request->file('imagen');
@@ -32,15 +31,13 @@ class RegisterController extends Controller
             $imageFile->move(public_path('images/users'), $imageName);
         }
 
-        // Create a new user including the image name
         $user = User::create([
             'nombre_usuario' => $request->nombre_usuario,
             'correo' => $request->correo,
             'contraseña' => Hash::make($request->contraseña),
-            'imagen' => $imageName // Store the image filename or null
+            'imagen' => $imageName
         ]);
 
-        // Log in the user
         Auth::login($user);
 
         return redirect('/');

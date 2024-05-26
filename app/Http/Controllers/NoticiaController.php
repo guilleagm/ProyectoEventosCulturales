@@ -14,28 +14,24 @@ class NoticiaController extends Controller
 
     public function store(Request $request)
     {
-        // Validar los datos del formulario incluyendo la imagen
         $validatedData = $request->validate([
             'titulo' => 'required|string|max:255',
             'texto' => 'required|string',
-            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validación para la imagen
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'id_artista' => 'required|exists:artistas,id',
-            'id_usuario' => 'required|exists:users,id',
         ]);
 
-        // Comprobar si el archivo de imagen está presente en la solicitud
         if ($request->hasFile('imagen')) {
             $imageFile = $request->file('imagen');
-            $imageName = time() . '.' . $imageFile->getClientOriginalExtension(); // Generar un nombre único para la imagen
-            $imagePath = $imageFile->move(public_path('images'), $imageName); // Mover la imagen al directorio público
+            $imageName = time() . '.' . $imageFile->getClientOriginalExtension();
+            $imagePath = $imageFile->move(public_path('images'), $imageName);
 
-            // Crear el registro de la noticia con la imagen adecuadamente guardada
             Noticia::create([
                 'titulo' => $validatedData['titulo'],
                 'texto' => $validatedData['texto'],
-                'imagen' => $imageName, // Guardar solo el nombre de la imagen
+                'imagen' => $imageName,
                 'id_artista' => $validatedData['id_artista'],
-                'id_usuario' => $validatedData['id_usuario'],
+                'id_usuario' => auth()->id(),
             ]);
 
             return redirect('/')->with('success', 'Noticia creada con éxito');

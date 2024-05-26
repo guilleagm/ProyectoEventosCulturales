@@ -36,14 +36,6 @@
                 @endforeach
             </select>
         </div>
-        <div class="grupo-form">
-            <label for="id_usuario">Usuario:</label><br>
-            <select name="id_usuario" class="input-form" required>
-                @foreach(App\Models\User::all() as $usuario)
-                    <option value="{{ $usuario->id }}">{{ $usuario->nombre_usuario }}</option>
-                @endforeach
-            </select>
-        </div>
         <button type="submit" class="btn btn-primary">Publicar Noticia</button>
     </form>
 
