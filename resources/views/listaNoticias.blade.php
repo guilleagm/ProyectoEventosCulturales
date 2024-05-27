@@ -21,7 +21,7 @@
                     @if($noticia->artista && $noticia->artista->usuario)
                         Sobre:
                         <a href="{{ route('users.profile', ['id' => $noticia->artista->usuario->id]) }}">
-                            {{ $noticia->artista->usuario->nombre_usuario }}
+                            {{ $noticia->artista->nombre }}
                         </a>
                     @else
                         <p>Nombre de usuario no disponible</p>

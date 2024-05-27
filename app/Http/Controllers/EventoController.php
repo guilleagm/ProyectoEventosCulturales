@@ -63,7 +63,7 @@ class EventoController extends Controller
 
     public function listarEventos()
     {
-        $eventos = Evento::with('sede')->simplePaginate(8);
+        $eventos = Evento::with('sede')->get();
         return view('listaEventos', ['eventos' => $eventos]);
     }
 
@@ -85,8 +85,8 @@ class EventoController extends Controller
         $request->validate([
             'titulo' => 'required|string|max:255',
             'fecha' => 'required|date',
+            'hora' => 'required|string',
             'categoria' => 'required|string|max:255',
-            'num_entradas_disponibles' => 'required|integer|min:1',
             'estado' => 'required|string|max:255',
             'id_sede' => 'required|integer',
             'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
@@ -109,10 +109,11 @@ class EventoController extends Controller
         $evento->update([
             'titulo' => $request->titulo,
             'fecha' => $request->fecha,
+            'hora' => $request->hora,
             'categoria' => $request->categoria,
-            'num_entradas_disponibles' => $request->num_entradas_disponibles,
             'estado' => $request->estado,
             'id_sede' => $request->id_sede
+
         ]);
 
         $evento->save();

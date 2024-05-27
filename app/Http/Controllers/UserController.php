@@ -13,9 +13,10 @@ class UserController extends Controller
     public function listar()
     {
         if (auth()->user()->esAdmin) {
-            $users = User::all();
-            $artistas = Artista::all();
-            return view('listaUsuarios', compact('users','artistas'));
+            $users = User::simplePaginate(11);
+            $admins = User::all();
+            $artistas = Artista::simplePaginate(8);
+            return view('listaUsuarios', compact('users','admins','artistas'));
         }
 
         return redirect('/');
@@ -26,13 +27,10 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $artista = Artista::where('id_usuario', $id)->first();
 
-        // Comprueba si el perfil que se está viendo pertenece a un artista
         $esArtistaPerfil = !is_null($artista);
 
-        // Comprueba si el usuario logueado es un artista
         $esArtistaLogueado = Auth::check() && Artista::where('id_usuario', Auth::id())->exists();
 
-        // Determina si el usuario logueado puede registrarse como artista
         $puedeRegistrarArtista = Auth::check() && !$esArtistaLogueado && $id == Auth::id();
 
         return view('perfilUsuario', [

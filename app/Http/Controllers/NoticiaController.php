@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Noticia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NoticiaController extends Controller
 {
@@ -60,37 +61,34 @@ class NoticiaController extends Controller
 
     public function update(Request $request, Noticia $noticia)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'titulo' => 'required|string|max:255',
             'texto' => 'required|string',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validación opcional de imagen
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'id_artista' => 'required|exists:artistas,id',
-            'id_usuario' => 'required|exists:users,id',
         ]);
 
-        // Comprobar si hay un nuevo archivo de imagen en la solicitud
         if ($request->hasFile('imagen')) {
-            // Eliminar la imagen antigua si existe
             if ($noticia->imagen && file_exists(public_path('images/' . $noticia->imagen))) {
                 unlink(public_path('images/' . $noticia->imagen));
             }
 
-            // Almacenar la nueva imagen
             $imageFile = $request->file('imagen');
-            $imageName = time() . '.' . $imageFile->getClientOriginalExtension(); // Nombre de archivo único
-            $imageFile->move(public_path('images'), $imageName); // Mover la imagen al directorio público
-
-            // Actualizar el campo imagen de la noticia
-            $validatedData['imagen'] = $imageName;
+            $imageName = time() . '.' . $imageFile->getClientOriginalExtension();
+            $imageFile->move(public_path('images'), $imageName);
+            $noticia->imagen = $imageName;
         }
 
-        // Actualizar otros atributos de la noticia
-        $noticia->update($validatedData);
+        $noticia->update([
+            'titulo' => $request->titulo,
+            'texto' => $request->texto,
+            'id_artista' => $request->id_artista,
+            'imagen' => $noticia->imagen
+        ]);
 
         return redirect()->route('noticias.show', $noticia->id)->with('success', 'Noticia actualizada correctamente.');
     }
 
-    // Función para eliminar una noticia
     public function destroy(Noticia $noticia)
     {
         $noticia->delete();
@@ -99,7 +97,6 @@ class NoticiaController extends Controller
     }
 
     public function index() {
-        // Carga las noticias incluyendo los datos del artista y del usuario
         $noticias = Noticia::with('artista.usuario')->get();
         return view('noticias.index', compact('noticias'));
     }

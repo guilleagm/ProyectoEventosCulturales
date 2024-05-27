@@ -25,7 +25,7 @@ body {
 }
 
 #imagenNoticia {
-    width: 66%;
+    width: 50%;
 }
 
 header {
@@ -128,7 +128,7 @@ main section button[type="submit"]:hover {
     margin-right: 20px;
     margin-bottom: 20px;
     width: 350px;
-    height: 350px;
+    height: 400px;
 }
 
 .carousel-item img {
@@ -377,6 +377,7 @@ main section button[type="submit"]:hover {
     border-radius: 8px;
     padding: 15px;
     width: 27%;
+    height: 350px;
 }
 
 .news-card img {
@@ -615,6 +616,11 @@ main section button[type="submit"]:hover {
     color: #6dc0b4;
 }
 
+#texto {
+    text-align: justify;
+    margin: 3%;
+}
+
 .table {
     width: 55%;
     margin-top: 20px;
@@ -739,14 +745,15 @@ main section button[type="submit"]:hover {
 }
 
 .img-fluid {
-    width: 80%;
+    width: 40%;
 }
 
 .p-limited {
-    width: 400px;
+    width: 55%;
     white-space: normal;
     word-wrap: break-word;
     margin-left: 25%;
+    text-align: justify;
 }
 
 .news-contenedor {
@@ -763,8 +770,13 @@ main section button[type="submit"]:hover {
         padding: 20px;
     }
 
-    .carousel-item p {
-        margin: 0;
+    .news-content{
+        margin-right: 5%;
+    }
+
+    .news-item img{
+        width: 30%;
+        margin-top: 10%;
     }
 
     .carousel-item img{
@@ -775,15 +787,12 @@ main section button[type="submit"]:hover {
         margin-top: -25%;
     }
 
-    .news-content{
-        margin-left: 25%;
-    }
-
     .p-limited {
-        width: 200px;
+        width: 55%;
         white-space: normal;
         word-wrap: break-word;
-        margin-left: 35%;
+        margin-left: 25%;
+        text-align: justify;
     }
 
     .news-image {
@@ -828,20 +837,19 @@ main section button[type="submit"]:hover {
     .carousel-item img{
         margin-left: 10%;
         width: 80%;
-        height: 50%;
+        height: 40%;
         margin-top: 5%;
         margin-bottom: 10%;
     }
 
-    .news-container {
-        height: 350px;
+    .news-item h3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
     }
 
-    .p-limited {
-        width: 200px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        margin-left: 20%;
+    .news-item p {
+        display: none;
     }
 
     .event-item img{

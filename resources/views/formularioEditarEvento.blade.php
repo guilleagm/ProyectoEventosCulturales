@@ -27,7 +27,7 @@
         <br>
         <div class="grupo-form">
             <label for="hora">Hora del Evento:</label><br>
-            <input type="time" name="hora" class="input-form" required>
+            <input type="time" value="{{$evento->hora}}" name="hora" class="input-form" required>
         </div>
         <br>
         <div class="grupo-form">
@@ -46,6 +46,14 @@
             <option value="Cancelado" {{ $evento->estado == 'Cancelado' ? 'selected' : '' }}>Cancelado</option>
             <option value="Terminado" {{ $evento->estado == 'Terminado' ? 'selected' : '' }}>Terminado</option>
         </select>
+        </div>
+        <div class="grupo-form">
+            <label for="id_sede">Artista:</label><br>
+            <select name="id_sede" class="input-form" required>
+                @foreach(App\Models\Sede::all() as $sedes)
+                    <option value="{{ $sedes->id }}">{{ $sedes->nombre }}</option>
+                @endforeach
+            </select>
         </div>
         <br>
         <div class="grupo-form">

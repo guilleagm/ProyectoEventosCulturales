@@ -16,7 +16,7 @@
     <p><strong>Artista:</strong> <a class="subra" href="{{ route('users.profile', ['id' => $noticia->artista->usuario->id]) }}">
             {{ $noticia->artista->usuario->nombre_usuario }}
         </a></p>
-    <p>{{ $noticia->texto }}</p>
+    <p id="texto">{{ $noticia->texto }}</p>
 </div>
 @auth
     @if (auth()->user()->esAdmin)

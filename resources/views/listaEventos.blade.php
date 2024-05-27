@@ -44,8 +44,5 @@
             </div>
         @endforeach
     </div>
-    <div id="paginador">
-        {{ $eventos->links() }}
-    </div>
 </div>
 @include('pie')

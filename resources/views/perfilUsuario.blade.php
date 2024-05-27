@@ -19,13 +19,13 @@
             <p><strong>Imagen:</strong> No hay imagen de perfil disponible</p>
         @endif
 
-        <p><strong>Nombre de Usuario:</strong> {{ $user->nombre_usuario }}</p>
+        <p><strong>Nombre de Usuario:</strong>{{ $user->nombre_usuario }}</p>
         <p><strong>Correo:</strong> {{ $user->correo }}</p>
 
         @if ($artista)
             <div class="artist-details">
                 <h2>Datos del Artista</h2>
-                <p><strong>Nombre Artístico:</strong> <a href="{{ route('users.profile', $artista->id) }}">{{ $artista->nombre }}</a></p>
+                <p><strong>Nombre Artístico:</strong>{{ $artista->nombre }}</p>
                 <p><strong>Biografía:</strong> {{ $artista->biografia }}</p>
                 <p><strong>Género:</strong> {{ $artista->genero }}</p>
             </div>

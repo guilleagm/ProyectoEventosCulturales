@@ -50,7 +50,7 @@
                         <div class="news-item">
                             <img src="{{ asset('images/' . $noticia->imagen) }}" alt="{{ $noticia->titulo }}" class="news-image">
                             <div class="news-content">
-                                <h3>{{ $noticia->titulo }}</h3>
+                                <h3 class="p-limited">{{ $noticia->titulo }}</h3>
                                 <p class="p-limited">{{ $noticia->texto }}</p>
                                 <a href="{{ route('noticias.show', ['id' => $noticia->id]) }}">Leer más</a>
                             </div>

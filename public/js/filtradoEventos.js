@@ -9,15 +9,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function setView(columns) {
         const items = document.querySelectorAll('.event-item');
-        const images = document.querySelectorAll('.event-item img'); // Seleccionar las imágenes también
+        const images = document.querySelectorAll('.event-item img');
 
         if (columns === 'list') {
             items.forEach(item => {
                 item.style.width = '70%';
             });
             images.forEach(img => {
-                img.style.width = '70%'; // Ajusta el ancho de la imagen al ancho del contenedor
-                img.style.height = 'auto'; // Ajusta la altura automáticamente
+                img.style.width = '70%';
+                img.style.height = 'auto';
             });
         } else {
             const width = (100 / columns) - 10 + '%';
@@ -25,12 +25,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.style.width = width;
             });
             images.forEach(img => {
-                img.style.width = '250px'; // Restablece el tamaño original de las imágenes
+                img.style.width = '250px';
                 img.style.height = '200px';
             });
         }
     }
 
-    // Llamada inicial a setView con '2' para establecer dos columnas al cargar la página
-    setView('2');
+    function adaptViewToSize() {
+        const screenWidth = window.innerWidth;
+        if (screenWidth <= 480) {
+            setView('1');
+        } else if (screenWidth <= 768) {
+            setView('2');
+        } else {
+            setView('3');
+        }
+    }
+
+    window.addEventListener('resize', adaptViewToSize);
+
+    adaptViewToSize();
 });
