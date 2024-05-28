@@ -30,7 +30,8 @@ class EventoController extends Controller
             'categoria' => 'required|string|max:255',
             'estado' => 'required|string|max:255',
             'id_sede' => 'required|integer',
-            'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+            'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'descripcion' => 'required|string'
         ]);
 
         $sede = Sede::find($request->id_sede);
@@ -52,6 +53,7 @@ class EventoController extends Controller
                 'estado' => $request->estado,
                 'id_sede' => $request->id_sede,
                 'imagen' => $imageName,
+                'descripcion' => $request->descripcion,
                 'id_usuario' => auth()->id()
             ]);
 
@@ -77,7 +79,8 @@ class EventoController extends Controller
     public function editar($id)
     {
         $evento = Evento::findOrFail($id);
-        return view('formularioEditarEvento', compact('evento'));
+        $sedes = Sede::all();
+        return view('formularioEditarEvento', compact('evento','sedes'));
     }
 
     public function actualizar(Request $request, $id)
@@ -89,7 +92,8 @@ class EventoController extends Controller
             'categoria' => 'required|string|max:255',
             'estado' => 'required|string|max:255',
             'id_sede' => 'required|integer',
-            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'descripcion' => 'required|string'
         ]);
 
         $evento = Evento::findOrFail($id);
@@ -112,7 +116,8 @@ class EventoController extends Controller
             'hora' => $request->hora,
             'categoria' => $request->categoria,
             'estado' => $request->estado,
-            'id_sede' => $request->id_sede
+            'id_sede' => $request->id_sede,
+            'descripcion' => $request->descripcion,
 
         ]);
 

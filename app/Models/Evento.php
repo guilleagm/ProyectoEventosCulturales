@@ -20,6 +20,7 @@ class Evento extends Model
         'imagen',
         'id_usuario',
         'hora',
+        'descripcion',
     ];
 
     public function sede()

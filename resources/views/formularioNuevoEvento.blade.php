@@ -44,6 +44,10 @@
             </select>
         </div>
         <div class="grupo-form">
+            <label for="descripcion">Descripción del evento:</label><br>
+            <textarea name="descripcion" class="input-form" required></textarea>
+        </div>
+        <div class="grupo-form">
             <label for="id_sede">Sede:</label><br>
             <select name="id_sede" class="input-form" required>
                 @foreach($sedes as $sede)

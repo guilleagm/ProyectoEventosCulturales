@@ -48,12 +48,17 @@
         </select>
         </div>
         <div class="grupo-form">
-            <label for="id_sede">Artista:</label><br>
-            <select name="id_sede" class="input-form" required>
-                @foreach(App\Models\Sede::all() as $sedes)
-                    <option value="{{ $sedes->id }}">{{ $sedes->nombre }}</option>
-                @endforeach
-            </select>
+            <label for="descripcion">Descripción del evento:</label><br>
+            <textarea name="descripcion" class="input-form" required>{{ old('texto', $evento->descripcion) }}</textarea>
+        </div>
+        <div class="grupo-form">
+            <label for="id_sede">Artista:<br>
+                <select name="id_sede" class="input-form" required>
+                    @foreach(App\Models\Sede::all() as $sedes)
+                        <option value="{{ $sedes->id }}">{{ $sedes->nombre }}</option>
+                    @endforeach
+                </select>
+            </label>
         </div>
         <br>
         <div class="grupo-form">
