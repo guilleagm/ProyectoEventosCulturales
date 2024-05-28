@@ -764,6 +764,31 @@ main section button[type="submit"]:hover {
     display: none;
 }
 
+.artist-details p{
+    text-align: justify;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.texto-bienvenida {
+    text-align: justify;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.texto-bienvenida p {
+    font-size: 16px;
+}
+
+.texto-bienvenida br {
+    margin-bottom: 20px;
+}
+
+.inline-form {
+    display: inline-block;
+    margin-bottom: 2%;
+}
+
 @media (max-width: 768px) {
     .container {
         width: 90%;
@@ -850,10 +875,6 @@ main section button[type="submit"]:hover {
 
     .news-item p {
         display: none;
-    }
-
-    .event-item img{
-        max-width: 100%;
     }
 
     .news-card {

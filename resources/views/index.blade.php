@@ -33,7 +33,7 @@
                             <img src="{{ asset('images/' . $evento->imagen) }}" alt="{{ $evento->titulo }}">
                             <h3>{{ $evento->titulo }}</h3>
                             <p>{{ $evento->categoria }}</p>
-                            <p>{{ \Carbon\Carbon::parse($evento->fecha)->format('d/m/Y') }} - {{ $evento->hora}}</p>
+                            <p>{{ \Carbon\Carbon::parse($evento->fecha)->format('d/m/Y') }} - {{ substr($evento->hora, 0, 5) }}</p>
                             <a href="{{ route('eventos.ver', ['id' => $evento->id]) }}">Más información</a>
                         </div>
                         @endif
@@ -43,6 +43,18 @@
                 @endif
             </div>
         </section>
+            <section class="texto-bienvenida">
+                <h2>Bienvenido a Cultura Vibe</h2>
+                <p>
+                    Bienvenidos a Cultura Vibe, su portal de referencia para los eventos culturales más emocionantes en Zaragoza. Aquí, celebramos la vibrante escena artística que nuestra ciudad tiene para ofrecer, desde cautivadores conciertos, pasando por representaciones teatrales impresionantes, hasta íntimos recitales de poesía que prometen tocar el alma y despertar los sentidos.
+
+                    <br>Nuestra misión en Cultura Vibe es conectar a los amantes del arte y la cultura con experiencias únicas que enriquezcan la vida social y cultural de nuestra comunidad. Zaragoza, con su rica historia y su dinámica vida cultural, es el telón de fondo perfecto para los eventos que curamos con pasión y dedicación.
+
+                    <br>nvitamos a locales y visitantes a explorar nuestra oferta de eventos y a sumergirse en el arte y la cultura que define nuestra ciudad. Desde propuestas innovadoras hasta clásicos reinventados, Cultura Vibe es su entrada a experiencias memorables que esperan por usted.
+
+                    <br>¡Explore, disfrute y deje que la vibrante cultura de Zaragoza le inspire!
+                </p>
+            </section>
             <section class="news-section">
                 <h2>Últimas Noticias</h2>
                 <div class="news-container">

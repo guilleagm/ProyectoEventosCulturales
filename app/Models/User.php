@@ -39,8 +39,4 @@ class User extends Authenticatable
     {
         return $this->contraseña;
     }
-    public function artistasFavoritos(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    {
-        return $this->belongsToMany(Artista::class, 'usuario_artista_favorito', 'id_usuario', 'id_artista');
-    }
 }

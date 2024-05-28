@@ -22,15 +22,22 @@
     @endif
 
     <p><strong>Descripción:</strong> {{ $evento->descripcion }}</p>
-    <p><strong>Fecha:</strong> {{ $evento->fecha }}</p>
+    <p><strong>Fecha:</strong>{{ \Carbon\Carbon::parse($evento->fecha)->format('d/m/Y') }} - {{ substr($evento->hora, 0, 5) }}</p>
     <p><strong>📍Sede:</strong> {{ $evento->sede->nombre }}</p>
     <p><strong>Estado:</strong> {{ $evento->estado }}</p>
     <p><strong>Número de Entradas Disponibles:</strong> {{ $evento->num_entradas_disponibles }}</p>
     <p><strong>Categoría:</strong> {{ $evento->categoria }}</p>
     @if(auth()->check() && (auth()->user()->esAdmin || auth()->id() == $evento->id_usuario))
-        <form method="POST" action="{{ route('eventos.cancel', $evento->id) }}" onsubmit="return confirm('¿Estás seguro de que quieres cancelar este evento?');">
+        <form method="POST" action="{{ route('eventos.cancel', $evento->id) }}" class="inline-form">
             @csrf
-            <button type="submit" class="btn btn-danger">Cancelar Evento</button>
+            @if($evento->estado != "Terminado")
+                <button type="submit" class="btn btn-danger">Cancelar Evento</button>
+            @endif
+        </form>
+        <form method="POST" action="{{ route('eventos.eliminar', $evento->id) }}" class="inline-form">
+            @csrf
+            @method('DELETE')
+                <button type="submit" class="btn btn-danger">Eliminar Evento</button>
         </form>
     @endif
     <br>
@@ -44,7 +51,7 @@
 </div>
 
 <div class="container">
-    <h2>Comentarios</h2>
+    <h2>Comentarios:</h2>
     <div id="comentarios-container">
         @foreach ($comentarios as $index => $comentario)
             <div class="comentario{{ $index >= 2 ? ' oculto' : '' }}">

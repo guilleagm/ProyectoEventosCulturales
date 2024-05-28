@@ -178,7 +178,7 @@ class EventoController extends Controller
 
         $evento->update(['estado' => 'Cancelado']);
 
-        $attendees = $evento->attendees;
+        $attendees = $evento->asistentes();
 
         if ($attendees->count() > 0) {
             foreach ($attendees as $user) {
@@ -190,4 +190,20 @@ class EventoController extends Controller
 
         return back()->with('success', 'Evento cancelado y correos enviados.');
     }
+
+    public function eliminarEvento($id)
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Necesitas iniciar sesión para realizar esta acción');
+        }
+
+        $evento = Evento::findOrFail($id);
+
+        Comentario::where('id_evento', $evento->id)->delete();
+
+        $evento->delete();
+
+        return redirect()->route('eventos.listar')->with('success', 'Evento eliminado exitosamente.');
+    }
+
 }

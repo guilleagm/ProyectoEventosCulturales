@@ -7,7 +7,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\SedeController;
-use App\Http\Controllers\UserArtistaFavController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,7 +47,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::delete('/admin/users/{user}', [UserController::class, 'eliminarUsuario'])->name('users.eliminarUsuario');
-    Route::delete('/usuarios/{usuario}/artistas/{artista}/eliminar_favorito', [App\Http\Controllers\UserArtistaFavController::class, 'eliminarFavorito'])->name('usuarios.artistas.eliminar_favorito');
 });
 Route::get('/cambiar-contraseña', [UserController::class, 'mostrarFormCambioContraseña'])->name('user.form-cambiar-contraseña')->middleware('auth');
 Route::post('/user/update-password', [UserController::class, 'cambiarContraseña'])->name('user.cambiar-contraseña')->middleware('auth');
@@ -59,7 +57,6 @@ Route::get('panelAdmin', function (){
 //Rutas artistas
 Route::get('/registro/artista', [ArtistaController::class, 'showRegistrationForm'])->name('registro.artista');
 Route::post('/registro/artista', [ArtistaController::class, 'register'])->name('registro.artista.submit');
-Route::post('/usuarios/{usuario}/artistas/{artista}/favoritos', [UserArtistaFavController::class, 'agregarFavorito'])->name('usuarios.artistas.agregar_favorito');
 
 //Rutas eventos
 Route::get('/programar-evento', [EventoController::class, 'mostrarFormularioEvento'])->name('programarEvento');
@@ -70,7 +67,7 @@ Route::get('/eventos/editar/{id}', [EventoController::class, 'editar'])->name('e
 Route::put('/eventos/actualizar/{id}', [EventoController::class, 'actualizar'])->name('eventos.actualizar');
 Route::get('/eventos/buscar', [EventoController::class, 'buscar'])->name('eventos.buscar');
 Route::get('/eventos/filtrar', [EventoController::class, 'filtrar'])->name('eventos.filtrar');
-
+Route::delete('/eventos/{id}/eliminar', [EventoController::class, 'eliminarEvento'])->name('eventos.eliminar');
 
 //Rutas comentarios
 Route::post('/eventos/{eventoId}/comentarios', [EventoController::class, 'guardarComentario'])->name('eventos.guardar_comentario');
