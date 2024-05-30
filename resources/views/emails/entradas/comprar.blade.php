@@ -4,7 +4,7 @@ Gracias por comprar entradas para {{ $evento->titulo }}. Aquí están los detall
 
         **Evento:** {{ $evento->titulo }}
         **Fecha:** {{ $evento->fecha }}
-        **Hora:** {{ $evento->hora }}
+        **Hora:** {{ substr($evento->hora, 0, 5) }}
         **Lugar:** {{ $evento->sede->nombre }}, {{ $evento->sede->dirección }}
         **Cantidad de Entradas:** {{ $numEntradas }}
 

@@ -16,14 +16,20 @@ class ComprarEntradas extends Mailable
 
     public $evento;
     public $numEntradas;
+    public $pdfPath; // Ruta del archivo PDF
 
     /**
      * Create a new message instance.
+     *
+     * @param Evento $evento
+     * @param int $numEntradas
+     * @param string $pdfPath Ruta al archivo PDF
      */
-    public function __construct(Evento $evento, $numEntradas)
+    public function __construct(Evento $evento, $numEntradas, $pdfPath)
     {
         $this->evento = $evento;
         $this->numEntradas = $numEntradas;
+        $this->pdfPath = $pdfPath; // Asumiendo que el PDF ya está generado y almacenado
     }
 
     /**
@@ -34,7 +40,11 @@ class ComprarEntradas extends Mailable
     public function build()
     {
         return $this->markdown('emails.entradas.comprar')
-            ->subject('Confirmación de Compra de Entradas');
+            ->subject('Confirmación de Compra de Entradas')
+            ->attach($this->pdfPath, [
+                'as' => 'EntradaEvento.pdf',
+                'mime' => 'application/pdf',
+            ]);
     }
 
     /**

@@ -26,7 +26,7 @@ class AsignacionEntradasController extends Controller
             return back()->with('error', 'No hay suficientes entradas disponibles.');
         }
 
-        AsignacionEntrada::create([
+        $asignacion = AsignacionEntrada::create([
             'id_evento' => $evento->id,
             'id_usuario' => auth()->id(),
             'num_entradas_asignadas' => $request->num_entradas_asignadas
@@ -34,9 +34,29 @@ class AsignacionEntradasController extends Controller
 
         $evento->num_entradas_disponibles -= $request->num_entradas_asignadas;
         $evento->save();
-        Mail::to(auth()->user()->correo)->send(new ComprarEntradas($evento, $request->num_entradas_asignadas));
+
+        // Generar PDF y enviar por correo
+        $pdf = $this->generarPDF($evento, $request->num_entradas_asignadas);
+        $pdfPath = storage_path('app/public/entradas/' . $pdf);
+        Mail::to(auth()->user()->correo)->send(new ComprarEntradas($evento, $request->num_entradas_asignadas, $pdfPath));
 
         return redirect()->route('eventos.ver', $evento->id)->with('success', 'Entradas compradas con éxito.');
+    }
+
+    private function generarPDF($evento, $numEntradas)
+    {
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('entrada', compact('evento', 'numEntradas'));
+        $filename = 'Entrada-' . $evento->id . '-' . time() . '.pdf';
+
+        // Asegurarse de que la carpeta exista
+        $path = storage_path('app/public/entradas/');
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        $pdf->save($path . $filename);
+        return $filename;
     }
 
     public function mostrarConfirmacionCancelacion($idEvento)

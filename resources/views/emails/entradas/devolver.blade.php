@@ -5,7 +5,7 @@ Hemos registrado la devolución de tus entradas para el evento **{{ $titulo }}**
 
     **Detalles del Evento:**
     - **Fecha:** {{ $fecha }}
-    - **Hora:** {{ $hora }}
+    - **Hora:** {{ substr($evento->hora, 0, 5) }}
     - **Lugar:** {{ $lugar }}
     - **Entradas Devueltas:** {{ $numEntradas }}
 
