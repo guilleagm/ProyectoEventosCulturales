@@ -6,11 +6,11 @@
 <body>
 <h1>Nombre del evento: {{ $evento->titulo }}</h1>
 <div>
-<p>Fecha: {{ $evento->fecha }}</p>
-    <p>Hora: {{ substr($evento->hora, 0, 5) }}</p>
-    <p>Número de entradas: {{ $numEntradas }}</p>
-    <p>Gracias por utilizar nuestros servicios.</p>
-    <p>CulturaVibe</p>
+    <center><p>Fecha: {{ $evento->fecha }}</p></center>
+    <center><p>Hora: {{ substr($evento->hora, 0, 5) }}</p></center>
+    <center><p>Número de entradas: {{ $numEntradas }}</p></center>
+    <center><p>Gracias por utilizar nuestros servicios.</p></center>
+    <center><p>CulturaVibe</p></center>
 </div>
 </body>
 </html>
