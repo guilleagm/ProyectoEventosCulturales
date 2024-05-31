@@ -7,18 +7,29 @@
     <title>CulturaVibe</title>
     <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
     <script src="/js/menuFotoPerfil.js"></script>
+    <script src="/js/hamburguesa.js"></script>
 </head>
 <body>
 <div class="container">
     @include('menu')
+    @auth
+        @if(Auth::user()->esAdmin)
     <h1>Detalles de la Sede</h1>
     <div>
         <p><strong>Nombre:</strong> {{ $sede->nombre }}</p>
         <p><strong>Dirección:</strong> {{ $sede->dirección }}</p>
         <p><strong>Capacidad:</strong> {{ $sede->capacidad }}</p>
         <p><strong>Accesibilidad:</strong> {{ $sede->accesibilidad ? 'Sí' : 'No' }}</p>
-    </div>
-    <a href="{{ route('sedes.listaSedes') }}" class="btn btn-primary">Volver a la lista de Sedes</a>
-    <a href="{{ route('sedes.editar', $sede->id) }}" class="btn btn-primary">Editar Sede</a>
+    <a href="{{ route('sedes.editar', $sede->id) }}" class="btn btn-primary">Editar Sede</a><br><br>
+        <form action="{{ route('sedes.eliminar', $sede->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Eliminar Sede</button>
+        </form>
 </div>
-@include('pie')
+@else
+    @include('prohibir')
+@endif
+    @include('pie')
+@endauth
+</body>

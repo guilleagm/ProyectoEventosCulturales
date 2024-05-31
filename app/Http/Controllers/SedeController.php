@@ -12,7 +12,7 @@ class SedeController extends Controller
         return view('formularioNuevaSede');
     }
 
-    public function store(Request $request)
+    public function nuevaSede(Request $request)
     {
         $validatedData = $request->validate([
             'nombre' => 'required',
@@ -31,10 +31,8 @@ class SedeController extends Controller
     }
     public function verSede($id)
     {
-        // Fetch the specified venue by ID
         $sede = Sede::findOrFail($id);
 
-        // Pass the venue to the view
         return view('verSede', ['sede' => $sede]);
     }
     public function editar($id)
@@ -43,10 +41,8 @@ class SedeController extends Controller
         return view('formularioEditarSede', ['sede' => $sede]);
     }
 
-    // Update the specified venue
     public function actualizar(Request $request, $id)
     {
-        // Validate the incoming data
         $request->validate([
             'nombre' => 'required|string|max:255',
             'dirección' => 'required|string|max:255',
@@ -54,7 +50,6 @@ class SedeController extends Controller
             'accesibilidad' => 'required|boolean'
         ]);
 
-        // Find the venue and update its attributes
         $sede = Sede::findOrFail($id);
         $sede->update([
             'nombre' => $request->nombre,
@@ -64,5 +59,12 @@ class SedeController extends Controller
         ]);
 
         return redirect()->route('sedes.ver', $sede->id)->with('success', 'Sede actualizada correctamente.');
+    }
+
+    public function eliminar($id)
+    {
+        $sede = Sede::findOrFail($id);
+        $sede->delete();
+        return redirect()->route('sedes.listaSedes')->with('success', 'Sede eliminada con éxito.');
     }
 }

@@ -33,11 +33,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function adaptViewToSize() {
         const screenWidth = window.innerWidth;
+        const btnTwo = document.querySelector('.view-button[data-view="2"]');
+        const btnThree = document.querySelector('.view-button[data-view="3"]');
+        const btnList = document.querySelector('.view-button[data-view="list"]');
+
         if (screenWidth <= 480) {
+            btnTwo.style.display = 'none';
+            btnThree.style.display = 'none';
+            btnList.style.display = 'block';
             setView('1');
         } else if (screenWidth <= 768) {
+            btnTwo.style.display = 'inline-block';
+            btnThree.style.display = 'inline-block';
+            btnList.style.display = 'inline-block';
             setView('2');
         } else {
+            btnTwo.style.display = 'inline-block';
+            btnThree.style.display = 'inline-block';
+            btnList.style.display = 'inline-block';
             setView('3');
         }
     }

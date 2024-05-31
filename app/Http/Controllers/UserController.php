@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artista;
+use App\Models\AsignacionEntrada;
+use App\Models\Evento;
+use App\Models\Noticia;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,44 +67,36 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function editarPerfil(Request $request, $id)
     {
-        // Validate the basic user attributes and image
         $request->validate([
             'nombre_usuario' => 'required|string|max:255',
             'correo' => 'required|string|email|max:255|unique:users,correo,' . $id,
             'nombre' => 'sometimes|required|string|max:255',
             'biografia' => 'nullable|string',
             'genero' => 'nullable|string|max:255',
-            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048' // Validate the image
+            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        // Retrieve the user instance
         $user = User::findOrFail($id);
 
-        // Check if there's a new image to be uploaded
         if ($request->hasFile('imagen')) {
-            // Delete the existing image if available
             if ($user->imagen && file_exists(public_path('images/users/' . $user->imagen))) {
                 unlink(public_path('images/users/' . $user->imagen));
             }
 
-            // Save the new image file
             $imageFile = $request->file('imagen');
             $imageName = time() . '.' . $imageFile->getClientOriginalExtension();
             $imageFile->move(public_path('images/users'), $imageName);
 
-            // Update the user's image field
             $user->imagen = $imageName;
         }
 
-        // Update the user information
         $user->update([
             'nombre_usuario' => $request->nombre_usuario,
             'correo' => $request->correo,
         ]);
 
-        // Check if the user is also an artist
         if ($request->has('nombre')) {
             $artista = Artista::updateOrCreate(
                 ['id_usuario' => $id],
@@ -121,13 +116,15 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         if (Auth::id() === $user->id) {
-            // Eliminar al usuario
+            Artista::where('id_usuario', $id)->delete();
+            Evento::where('id_usuario', $id)->delete();
+            Noticia::where('id_usuario', $id)->delete();
+            AsignacionEntrada::where('id_usuario', $id)->delete();
             $user->delete();
 
-            // Cerrar la sesión
             Auth::logout();
 
-            return redirect()->route('/')->with('success', 'Tu cuenta ha sido eliminada correctamente.');
+            return redirect()->route('login')->with('success', 'Tu cuenta ha sido eliminada correctamente.');
         } else {
             abort(403, 'No tienes permiso para eliminar este usuario.');
         }

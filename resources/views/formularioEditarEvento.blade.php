@@ -7,6 +7,7 @@
     <title>CulturaVibe</title>
     <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
     <script src="/js/menuFotoPerfil.js"></script>
+    <script src="/js/hamburguesa.js"></script>
 </head>
 <body>
 <div class="container">
@@ -70,3 +71,4 @@
     </form>
 </div>
 @include('pie')
+</body>

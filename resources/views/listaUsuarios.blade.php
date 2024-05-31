@@ -11,10 +11,8 @@
 <body>
 <div class="container">
     @include('menu')
-    @auth
         @if (Auth::user()->esAdmin)
             <div class="table-container">
-                <!-- Lista de Usuarios no administradores -->
                 <div>
                     <h1>Lista de Usuarios</h1>
                     <table class="table">
@@ -40,7 +38,6 @@
                         {{ $users->links() }}
                     </div>
                 </div>
-                <!-- Lista de Administradores -->
                 <div>
                     <h1>Lista de Administradores</h1>
                     <table class="table">
@@ -62,7 +59,6 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Lista de Artistas -->
                 <div>
                     <h1>Lista de Artistas</h1>
                     <table class="table">
@@ -88,6 +84,6 @@
                 </div>
             </div>
         @endif
-    @endauth
 </div>
 @include('pie')
+</body>

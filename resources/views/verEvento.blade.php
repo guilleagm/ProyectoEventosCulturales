@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
     <script src="/js/menuFotoPerfil.js"></script>
     <script src="/js/comentarios.js"></script>
-
+    <script src="/js/hamburguesa.js"></script>
 </head>
 <body>
 <div class="container">
@@ -39,53 +39,56 @@
             @method('DELETE')
                 <button type="submit" class="btn btn-danger">Eliminar Evento</button>
         </form>
+        <a href="{{ route('eventos.editar', $evento->id) }}" class="btn btn-primary">Editar Evento</a>
     @endif
     <br>
-    <a href="{{ route('eventos.editar', $evento->id) }}" class="btn btn-primary">Editar Evento</a>
+    @auth
     @if(!$usuarioHaComprado)
         <a href="{{ route('entradas.mostrar_compra', $evento->id) }}" class="btn btn-primary">Comprar Entradas</a>
     @endif
     @if($usuarioHaComprado)
     <a href="{{ route('entradas.confirmar_cancelacion', $evento->id) }}" class="btn btn-primary">Devolver Entradas</a>
     @endif
-</div>
-
-<div class="container">
-    <h2>Comentarios:</h2>
-    <div id="comentarios-container">
-        @foreach ($comentarios as $index => $comentario)
-            <div class="comentario{{ $index >= 2 ? ' oculto' : '' }}">
-                <p><strong>Comentado por:</strong> <a href="{{ route('users.profile', $comentario->usuario->id) }}">{{ $comentario->usuario->nombre_usuario }}</a></p>
-                <p><strong>Contenido:</strong> {{ $comentario->contenido }}</p>
-                <p><strong>Valoración:</strong> {{ $comentario->valoracion }} estrellas</p>
-                <p><strong>Fecha del comentario:</strong> {{ $comentario->created_at }}</p>
-            </div>
-        @endforeach
+    @endauth
     </div>
-    @if(count($comentarios) > 2)
-        <button id="show-more-comments" class="btn btn-primary">Mostrar más comentarios</button>
-    @endif
-</div>
 
 <div class="container">
-    <form action="{{ route('eventos.guardar_comentario', $evento->id) }}" method="POST">
-        @csrf
-        <div class="grupo-form">
-            <label for="contenido">Comentario:</label><br>
-            <textarea id="contenido" class="input-form" name="contenido" required></textarea>
+<h2>Comentarios:</h2>
+<div id="comentarios-container">
+    @foreach ($comentarios as $index => $comentario)
+        <div class="comentario{{ $index >= 2 ? ' oculto' : '' }}">
+            <p><strong>Comentado por:</strong> <a href="{{ route('users.profile', $comentario->usuario->id) }}">{{ $comentario->usuario->nombre_usuario }}</a></p>
+            <p><strong>Contenido:</strong> {{ $comentario->contenido }}</p>
+            <p><strong>Valoración:</strong> {{ $comentario->valoracion }} estrellas</p>
+            <p><strong>Fecha del comentario:</strong> {{ \Carbon\Carbon::parse($comentario->created_at)->format('d/m/Y') }}</p>
         </div>
-        <div class="grupo-form">
-            <label for="valoracion">Valoración:</label><br>
-            <select id="valoracion" class="input-form" name="valoracion" required>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Enviar Comentario</button>
-    </form>
+    @endforeach
 </div>
-</body>
+@if(count($comentarios) > 2)
+    <button id="show-more-comments" class="btn btn-primary">Mostrar más comentarios</button>
+@endif
+</div>
+@auth
+<div class="container">
+<form action="{{ route('eventos.guardar_comentario', $evento->id) }}" method="POST">
+    @csrf
+    <div class="grupo-form">
+        <label for="contenido">Comentario:</label><br>
+        <textarea id="contenido" class="input-form" name="contenido" required></textarea>
+    </div>
+    <div class="grupo-form">
+        <label for="valoracion">Valoración:</label><br>
+        <select id="valoracion" class="input-form" name="valoracion" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar Comentario</button>
+</form>
+</div>
+@endauth
 @include('pie')
+</body>

@@ -7,10 +7,12 @@
     <title>CulturaVibe</title>
     <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
     <script src="/js/menuFotoPerfil.js"></script>
+    <script src="/js/hamburguesa.js"></script>
 </head>
 <body>
 <div class="container">
     @include('menu')
+    @if (Auth::user()->esAdmin)
     <h2>Editar Sede</h2>
     <form method="POST" action="{{ route('sedes.actualizar', $sede->id) }}">
         @csrf
@@ -34,7 +36,14 @@
                 <option value="0" {{ !$sede->accesibilidad ? 'selected' : '' }}>No</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Actualizar Sede</button>
+        <button type="submit" class="btn btn-primary">Actualizar Sede</button>ç
     </form>
 </div>
-@include('pie')
+@else
+    @include('prohibir')
+@endif
+@if(Auth::user()->esAdmin)
+    @include('pie')
+@endif
+</body>
+

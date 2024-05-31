@@ -7,6 +7,7 @@
     <title>CulturaVibe</title>
     <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
     <script src="/js/menuFotoPerfil.js"></script>
+    <script src="/js/hamburguesa.js"></script>
 </head>
 <body>
 <div class="container">
@@ -36,9 +37,11 @@
         @if($esArtistaLogueado)
             <a href="{{ route('programarEvento') }}" class="btn btn-primary">Programar Evento</a><br>
         @endif
-
-        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Editar Perfil</a>
-
+        @auth
+            @if (auth()->user()->id == $user->id)
+                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Editar Perfil</a>
+            @endif
+        @endauth
         @if (auth()->check() && auth()->user()->esAdmin && auth()->user()->id != $user->id)
             <form action="{{ route('users.eliminarUsuario', $user->id) }}" method="POST">
                 @csrf
@@ -57,3 +60,4 @@
     </div>
 </div>
 @include('pie')
+</body>

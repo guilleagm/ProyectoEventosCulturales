@@ -13,7 +13,7 @@ class NoticiaController extends Controller
         return view('formularioNuevaNoticia');
     }
 
-    public function store(Request $request)
+    public function nuevaNoticia(Request $request)
     {
         $validatedData = $request->validate([
             'titulo' => 'required|string|max:255',
@@ -59,7 +59,7 @@ class NoticiaController extends Controller
         return view('formularioEditarNoticia', compact('noticia'));
     }
 
-    public function update(Request $request, Noticia $noticia)
+    public function editarNoticia(Request $request, Noticia $noticia)
     {
         $request->validate([
             'titulo' => 'required|string|max:255',
@@ -89,7 +89,7 @@ class NoticiaController extends Controller
         return redirect()->route('noticias.show', $noticia->id)->with('success', 'Noticia actualizada correctamente.');
     }
 
-    public function destroy(Noticia $noticia)
+    public function eliminarNoticia(Noticia $noticia)
     {
         $noticia->delete();
 

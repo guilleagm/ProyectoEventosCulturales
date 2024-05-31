@@ -7,11 +7,11 @@
     <title>CulturaVibe</title>
     <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
     <script src="/js/menuFotoPerfil.js"></script>
+    <script src="/js/hamburguesa.js"></script>
 </head>
 <body>
 <div class="container">
     @include('menu')
-@auth
     @if (Auth::user()->esAdmin)
     <h1>Crear Nueva Sede</h1>
     <form method="POST" action="{{ route('sedes.store') }}">
@@ -38,6 +38,10 @@
         <button type="submit" class="btn btn-primary">Crear Sede</button>
     </form>
 </div>
+@else
+    @include('prohibir')
     @endif
-@endauth
-@include('pie')
+@if(Auth::user()->esAdmin)
+    @include('pie')
+@endif
+</body>

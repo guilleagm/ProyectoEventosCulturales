@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
     <script src="/js/filtradoEventos.js" ></script>
     <script src="/js/menuFotoPerfil.js"></script>
+    <script src="/js/hamburguesa.js"></script>
     <script src="/js/limpiarFiltros.js"></script>
 </head>
 <div class="container">
@@ -46,3 +47,4 @@
     </div>
 </div>
 @include('pie')
+</html>

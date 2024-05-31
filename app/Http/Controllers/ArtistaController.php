@@ -22,7 +22,6 @@ class ArtistaController extends Controller
             'genero' => 'required|string|max:255',
         ]);
 
-        // Crear un nuevo artista con los datos proporcionados
         Artista::create([
             'nombre' => $request->nombre,
             'biografia' => $request->biografia,
@@ -30,7 +29,6 @@ class ArtistaController extends Controller
             'id_usuario' => Auth::id(),
         ]);
 
-        // Redirigir a alguna página de confirmación o a donde desees
         return redirect()->route('home');
     }
 }

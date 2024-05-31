@@ -175,7 +175,7 @@ class EventoController extends Controller
         return view('index', ['eventos' => $eventos, 'noticias' => $noticias]);
     }
 
-    public function cancelEvent(Evento $evento)
+    public function cancelarEvento(Evento $evento)
     {
         if (!auth()->check() || (auth()->user()->id !== $evento->id_usuario && !auth()->user()->esAdmin)) {
             abort(403, 'No autorizado para cancelar este evento.');

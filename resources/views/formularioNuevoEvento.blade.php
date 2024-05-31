@@ -7,10 +7,12 @@
     <title>CulturaVibe</title>
     <link rel="stylesheet" href="{{ asset('css/estilos1.css') }}">
     <script src="/js/menuFotoPerfil.js"></script>
+    <script src="/js/hamburguesa.js"></script>
 </head>
 <body>
 <div class="container">
     @include('menu')
+    @auth
     <h1>Programar Nuevo Evento</h1>
     <form method="POST" action="{{ route('storeEvento') }}" enctype="multipart/form-data">
         @csrf
@@ -62,4 +64,6 @@
         <button type="submit" class="btn btn-primary">Programar Evento</button>
     </form>
 </div>
+@endauth
 @include('pie')
+</body>

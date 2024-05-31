@@ -952,4 +952,8 @@ main section button[type="submit"]:hover {
     .table{
         margin-left: 0;
     }
+
+    .table-container {
+        margin-left: 5%;
+    }
 }
