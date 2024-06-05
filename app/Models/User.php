@@ -40,4 +40,14 @@ class User extends Authenticatable
     {
         return $this->contraseña;
     }
+
+    public function eventos()
+    {
+        return $this->hasMany(Evento::class, 'id_usuario');
+    }
+
+    public function artista()
+    {
+        return $this->hasOne(Artista::class, 'id_usuario');
+    }
 }

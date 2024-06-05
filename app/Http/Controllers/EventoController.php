@@ -145,15 +145,15 @@ class EventoController extends Controller
     }
     public function buscar(Request $request)
     {
-        $userName = $request->input('artist-name');
+        $artistName = $request->input('artist-name');
 
-        $eventos = Evento::whereHas('usuario', function ($query) use ($userName) {
-            $query->where('nombre_usuario', 'like', '%' . $userName . '%');
+        $eventos = Evento::whereHas('usuario.artista', function ($query) use ($artistName) {
+            $query->where('nombre', 'like', '%' . $artistName . '%');
         })->get();
 
-        // Return the search results to a view
-        return view('resultadosBusqueda', ['eventos' => $eventos, 'busqueda' => $userName]);
+        return view('resultadosBusqueda', ['eventos' => $eventos, 'busqueda' => $artistName]);
     }
+
     public function filtrar(Request $request)
     {
         $categoria = $request->input('categoria');
